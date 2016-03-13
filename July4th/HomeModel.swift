@@ -17,20 +17,12 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
     
     func downloadItems(type: String) {
         
-        dataType = type
+        dataType = type.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        if type == "Winery" {
-            urlPath = "https://gis.howardcountymd.gov/iOS/WineInTheWoods/GetWineryList.aspx"
-        } else if type == "Food"
-            || type == "Crafter"
-            || type == "Sponsors" {
-            urlPath = "https://gis.howardcountymd.gov/iOS/WineInTheWoods/GetName.aspx?mytype="+type
-        } else if type == "Music" {
-            urlPath = "https://gis.howardcountymd.gov/iOS/WineInTheWoods/GetEntertainerList.aspx?stage=All"
-        } else if type == "Other" {
-            urlPath = "https://gis.howardcountymd.gov/iOS/WineInTheWoods/GetOthersList.aspx"
-        } else if type == "Points" {
-            urlPath = "https://gis.howardcountymd.gov/iOS/WineInTheWoods/GetPointsList.aspx"
+        if type == "Points" {
+            urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetPointsList.aspx"
+        } else {
+            urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetList.aspx?cat="+dataType
         }
         let url: NSURL = NSURL(string: urlPath)!
         var session: NSURLSession!
@@ -83,62 +75,20 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             jsonElement = jsonResult[i] as! NSDictionary
             
             let location = LocationModel()
-            var name: NSString = ""
-            var desc: NSString = ""
-            var locTime: NSString = ""
-            var url: NSString = ""
-            var phone: NSString = ""
-            var pin: NSString = ""
+            let category = (jsonElement["Category"] as? String)!
+            let name = (jsonElement["Name"] as? String)!
+            let desc = (jsonElement["Description"] as? String)!
+            let url = (jsonElement["URL"] as? String)!
+            let latitude = (jsonElement["Y"] as? Double)!
+            let longitude = (jsonElement["X"] as? Double)!
             
-            
-            if dataType == "Winery" {
-                name = (jsonElement["Wine_Maker"] as? String)!
-                desc = (jsonElement["TentID"] as? String)!
-                locTime = (jsonElement["City"] as? String)! +
-                    ", " + (jsonElement["State"] as? String)! +
-                    " " + (jsonElement["Zip"] as? String)!
-                url = (jsonElement["URL"] as? String)!
-                phone = (jsonElement["Phone"] as? String)!
-                pin = (jsonElement["TentID"] as? String)!
-            } else if dataType == "Food"
-                || dataType == "Sponsors" {
-                name = (jsonElement["NAME"] as? String)!
-                desc = (jsonElement["DESCRIPTION"] as? String)!
-                locTime = (jsonElement["TYPE"] as? String)!
-                url = (jsonElement["URL2"] as? String)!
-                pin = (jsonElement["TEXTLABEL"] as? String)!
-            } else if dataType == "Crafter" {
-                    name = (jsonElement["NAME"] as? String)!
-                    desc = (jsonElement["DESCRIPTION"] as? String)!
-                    locTime = (jsonElement["TYPE"] as? String)!
-                    url = (jsonElement["URL2"] as? String)!
-                    pin = "A" + (jsonElement["TEXTLABEL"] as? String)!
-            } else if dataType == "Other" || dataType == "Points"{
-                    name = (jsonElement["NAME"] as? String)!
-                    desc = (jsonElement["DESCRIPTION"] as? String)!
-                    locTime = (jsonElement["TYPE"] as? String)!
-                    pin = (jsonElement["NAME"] as? String)!
-            } else if dataType == "Music" {
-                name = (jsonElement["ENTERTAINER"] as? String)!
-                desc = (jsonElement["GENRE"] as? String)!
-                locTime = (jsonElement["STAGE_NAME"] as? String)! +
-                    " - " + (jsonElement["DATE_TIME"] as? String)!
-                url = (jsonElement["URL"] as? String)!
-                pin = (jsonElement["STAGE_NAME"] as? String)!
-            }
-            
-            
-            let latitude = jsonElement["Y"] as? Double
-            let longitude = jsonElement["X"] as? Double
-            
+            location.url = url as String
+            location.category = category as String
             location.name = name as String
             location.desc = desc as String
-            location.locTime = locTime as String
-            location.pin = pin as String
-            location.latitude = latitude
-            location.longitude = longitude
-            location.url = url as String
-            location.phone = phone as String
+            location.latitude = latitude as Double
+            location.longitude = longitude as Double
+            
             locations.addObject(location)
             
         }

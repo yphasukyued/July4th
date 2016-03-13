@@ -32,7 +32,6 @@ var timer1: NSTimer = NSTimer()
 var timer2: NSTimer = NSTimer()
 var timer3: NSTimer = NSTimer()
 var timer4: NSTimer = NSTimer()
-var timer5: NSTimer = NSTimer()
 var seconds: NSInteger = NSInteger()
 var sliderValues: float_t = float_t()
 var introText: UITextView = UITextView()
@@ -46,7 +45,7 @@ var isHighLighted:Bool = false
 var myActivityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 var slider: UISlider = UISlider()
 
-let menus = ["2016 Tickets", "Accolades", "Accommodations", "Become a Sponsor", "Contact Us", "Designated Drivers", "Directions & Transportation", "Event Map", "Event Merchandise", "FAQ", "Grapevine Weather", "History", "Merriments", "Program Guide", "Terms and Conditions", "Wine Check Service", "Wine Education"]
+let menus = ["Become a Sponsor", "Contact Us", "Directions & Transportation", "Event Map", "Event Merchandise", "FAQ", "Merriments", "Program Guide", "Terms and Conditions"]
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HomeModelProtocal, UITabBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate {
     
@@ -162,7 +161,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func homePress() {
         self.stopCountDown()
-        timer2.invalidate()
         appTitle.text = "July 4th"
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
@@ -186,7 +184,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func leftBtnPress() {
         self.stopCountDown()
-        timer2.invalidate()
         appTitle.text = "July 4th"
         rightBtn.tintColor = UIColor.whiteColor()
         self.tabBar.tintColor = UIColor.grayColor()
@@ -224,7 +221,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func rightBtnPress() {
         self.stopCountDown()
-        timer2.invalidate()
         appTitle.text = "July 4th"
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
@@ -289,39 +285,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.textLabel?.text = menus[indexPath.row]
             cell.textLabel?.textColor = UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
             cell.textLabel?.font = UIFont(name: "TrebuchetMS-Bold", size: 16)
-        } else if dataSource == "Winery"
-            || dataSource == "Music"
-            || dataSource == "Food"
-            || dataSource == "Sponsors"
-            || dataSource == "Crafter" {
-                let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-                cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
-                cell.myButton1.setImage(UIImage(named: (item.pin! as String)+".png"), forState: UIControlState.Normal)
-                cell.myLabel1.frame = CGRectMake(55, 5, tableView.frame.width-50, 24)
-                cell.myLabel1.text = item.name
-                cell.myLabel2.frame = CGRectMake(55, 22, tableView.frame.width-50, 24)
-                cell.myLabel2.text = item.desc
-                cell.myDetail.frame = CGRectMake(55, 39, tableView.frame.width-50, 24)
-                cell.myDetail.text = item.locTime
-                cell.mapButton.frame = CGRectMake(60, 65, 28, 28)
-                cell.mapButton.setImage(UIImage(named: "852-map.png"), forState: UIControlState.Normal)
-                cell.mapButton.addTarget(self, action: "openMap", forControlEvents:.TouchUpInside)
-                cell.webButton.frame = CGRectMake(105, 65, 28, 28)
-                cell.webButton.setImage(UIImage(named: "715-globe.png"), forState: UIControlState.Normal)
-                cell.webButton.addTarget(self, action: "openWeb", forControlEvents:.TouchUpInside)
-                if item.phone != "" {
-                    cell.phoneButton.frame = CGRectMake(150, 65, 28, 28)
-                    cell.phoneButton.setImage(UIImage(named: "735-phone.png"), forState: UIControlState.Normal)
-                    cell.phoneButton.addTarget(self, action: "openPhone", forControlEvents:.TouchUpInside)
-                }
-        } else {
+        } else if dataSource == "Others" {
             let item: LocationModel = feedItems[indexPath.row] as! LocationModel
             cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
-            cell.myButton1.setImage(UIImage(named: (item.pin! as String)+".png"), forState: UIControlState.Normal)
+            cell.myButton1.setImage(UIImage(named: (item.name! as String)+".png"), forState: UIControlState.Normal)
             cell.myLabel1.frame = CGRectMake(55, 5, tableView.frame.width-50, 24)
             cell.myLabel1.text = item.name
             cell.myLabel2.frame = CGRectMake(55, 22, tableView.frame.width-50, 24)
             cell.myLabel2.text = item.desc
+        } else {
+            let item: LocationModel = feedItems[indexPath.row] as! LocationModel
+            cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
+            cell.myButton1.setImage(UIImage(named: (item.name! as String)+".png"), forState: UIControlState.Normal)
+            cell.myLabel1.frame = CGRectMake(55, 5, tableView.frame.width-50, 24)
+            cell.myLabel1.text = item.name
+            cell.myLabel2.frame = CGRectMake(55, 22, tableView.frame.width-50, 24)
+            cell.myLabel2.text = item.desc
+            cell.myDetail.frame = CGRectMake(55, 39, tableView.frame.width-50, 24)
+            cell.myDetail.text = item.category
+            cell.mapButton.frame = CGRectMake(60, 65, 28, 28)
+            cell.mapButton.setImage(UIImage(named: "852-map.png"), forState: UIControlState.Normal)
+            cell.mapButton.addTarget(self, action: "openMap", forControlEvents:.TouchUpInside)
+            cell.webButton.frame = CGRectMake(105, 65, 28, 28)
+            cell.webButton.setImage(UIImage(named: "715-globe.png"), forState: UIControlState.Normal)
+            cell.webButton.addTarget(self, action: "openWeb", forControlEvents:.TouchUpInside)
         }
         
         cell.backgroundColor = UIColor.clearColor()
@@ -331,7 +318,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if dataSource == "Slide" {
             menuPress(indexPath.row)
-        } else if dataSource == "Other" {
+        } else if dataSource == "Others" {
             
             let item: LocationModel = feedItems[indexPath.row] as! LocationModel
             
@@ -349,29 +336,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             mapView.addAnnotation(annotation)
             
             rightBtnPress()
-        } else if dataSource == "Music" {
-            timer2.invalidate()
-            appTitle.text = "July 4th"
-            let previousIndexPath = selectedIndexPath
-            if indexPath == selectedIndexPath {
-                selectedIndexPath = nil
-            } else {
-                selectedIndexPath = indexPath
-                let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-                destinationTime = item.locTime!
-                timer2 = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "displayTimeCountdown", userInfo: nil, repeats: true)
-            }
-            
-            var indexPaths : Array<NSIndexPath> = []
-            if let previous = previousIndexPath {
-                indexPaths += [previous]
-            }
-            if let current = selectedIndexPath {
-                indexPaths += [current]
-            }
-            if indexPaths.count > 0 {
-                tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
-            }
             
         } else {
             
@@ -411,55 +375,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         homeBtn.hidden = false
         if index == 0 {
             closeSlide()
-            self.openWebView("http://www.missiontix.com/page/searchResults/?venue=Symphony%20Woods")
+            self.openWebView("http://www.wineinthewoods.com/sponsors/become-a-sponsor/")
         } else if index == 1 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/about/accolades/")
+            self.openWebView("http://www.wineinthewoods.com/contact-us/")
         } else if index == 2 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/hotels-restaurants/")
+            self.openWebView("http://www.wineinthewoods.com/information/directions-transportation/")
         } else if index == 3 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/sponsors/become-a-sponsor/")
+            self.openWebView("http://www.wineinthewoods.com/information/event-map/")
         } else if index == 4 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/contact-us/")
+            self.openWebView("http://www.wineinthewoods.com/information/merchandise/")
         } else if index == 5 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/designated-drivers/")
+            self.openWebView("http://www.wineinthewoods.com/information/frequently-asked-questions/")
         } else if index == 6 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/directions-transportation/")
+            self.openWebView("http://www.wineinthewoods.com/artisans-entertainment/merriments/")
         } else if index == 7 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/event-map/")
+            self.openWebView("http://www.wineinthewoods.com/information/program-guide/")
         } else if index == 8 {
             closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/merchandise/")
-        } else if index == 9 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/frequently-asked-questions/")
-        } else if index == 10 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/grapevine-weather/")
-        } else if index == 11 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/about/history/")
-        } else if index == 12 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/artisans-entertainment/merriments/")
-        } else if index == 13 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/program-guide/")
-        } else if index == 14 {
-            closeSlide()
             self.openDisclaimer()
-        } else if index == 15 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/wineries/wine-seminars/")
-        } else if index == 16 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/wineries/wine-seminars/")
         }
     }
     func openMap() {
@@ -486,95 +426,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let item: LocationModel = feedItems[selectedIndexPath!.row] as! LocationModel
         openWebView(item.url!)
     }
-    func openPhone() {
-        let item: LocationModel = feedItems[selectedIndexPath!.row] as! LocationModel
-        let newPhone = item.phone!.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        print(newPhone)
-        if let phoneCallURL:NSURL = NSURL(string: "tel://\(newPhone)") {
-            let application:UIApplication = UIApplication.sharedApplication()
-            if (application.canOpenURL(phoneCallURL)) {
-                
-                let alert = UIAlertController(title: item.name!, message: item.phone!, preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: "Call", style: .Default) { (alert: UIAlertAction!) -> Void in
-                    application.openURL(phoneCallURL);
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (alert: UIAlertAction!) -> Void in
-                }
-                alert.addAction(defaultAction)
-                alert.addAction(cancelAction)
-                presentViewController(alert, animated: true, completion:nil)
-            }
-        }
-    }
     func openWebView(url: NSString) {
         webView.loadRequest(NSURLRequest(URL: NSURL(string: url as String)!))
         UIView.animateWithDuration(1.0, animations: {
             menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
             self.webView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
         })
-    }
-    func displayTimeCountdown() {
-        
-        // set destination date
-        let firstArr = destinationTime.componentsSeparatedByString(" - ")
-        let secondArr = firstArr[1].componentsSeparatedByString(" ")
-        
-        let ymdArr = secondArr[0].componentsSeparatedByString("-")
-        let destY = "\(ymdArr[0])"
-        let destM = "\(ymdArr[1])"
-        let destD = "\(ymdArr[2])"
-        
-        let timeArr = secondArr[1].componentsSeparatedByString(":")
-        let destHH = "\(timeArr[0])"
-        let destMM = "\(timeArr[1])"
-        let destSS = "\(timeArr[2])"
-        
-        let userCalendar = NSCalendar.currentCalendar()
-        let competitionDate = NSDateComponents()
-        if let myNumber1 = NSNumberFormatter().numberFromString(destY) {
-            competitionDate.year  = myNumber1.integerValue
-        }
-        if let myNumber2 = NSNumberFormatter().numberFromString(destM) {
-            competitionDate.month = myNumber2.integerValue
-        }
-        if let myNumber3 = NSNumberFormatter().numberFromString(destD) {
-            competitionDate.day = myNumber3.integerValue
-        }
-        
-        if let myNumber4 = NSNumberFormatter().numberFromString(destHH) {
-            competitionDate.hour = myNumber4.integerValue
-        }
-        if let myNumber5 = NSNumberFormatter().numberFromString(destMM) {
-            competitionDate.minute = myNumber5.integerValue
-        }
-        if let myNumber6 = NSNumberFormatter().numberFromString(destSS) {
-            competitionDate.second = myNumber6.integerValue
-        }
-        
-        let competitionDay = userCalendar.dateFromComponents(competitionDate)!
-        
-        // set current date
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let currentComponents = calendar.components([.Hour, .Minute, .Second, .Month, .Year, .Day], fromDate: date)
-        
-        let currentDate = calendar.dateFromComponents(currentComponents)
-        
-        // Here we compare the two dates
-        competitionDay.timeIntervalSinceDate(currentDate!)
-        
-        let dayCalendarUnit: NSCalendarUnit = ([.Day, .Hour, .Minute, .Second])
-        
-        //here we change the seconds to hours,minutes and days
-        let CompetitionDayDifference = userCalendar.components(dayCalendarUnit, fromDate: currentDate!, toDate: competitionDay, options: NSCalendarOptions())
-        //finally, here we set the variable to our remaining time
-        let daysLeft = CompetitionDayDifference.day
-        let hoursLeft = CompetitionDayDifference.hour
-        let minutesLeft = CompetitionDayDifference.minute
-        let secondLeft = CompetitionDayDifference.second
-        
-        appTitle.text = "Day: " + "\(daysLeft)" + " Time: " + "\(hoursLeft)" + ":" + "\(minutesLeft)" + ":" + "\(secondLeft)"
-        
     }
     //# MARK: - Scroll Label
     func createScrollLabel() {
@@ -677,7 +534,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 slider.hidden = false
                 sliderValues = 0
                 seconds = 10
-                timer3 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "countDownTime", userInfo: nil, repeats: false)
+                timer2 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "countDownTime", userInfo: nil, repeats: false)
                 self.startAudio()
         })
         
@@ -691,9 +548,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             mainView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
             animateView.alpha = 0
             }, completion:{(Bool) in
+                timer2.invalidate()
                 timer3.invalidate()
                 timer4.invalidate()
-                timer5.invalidate()
                 slider.hidden = true
                 finalCountLabel.hidden = true
                 if musicPlay {
@@ -715,10 +572,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     func countDownTime() {
-        timer4 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
+        timer3 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
         
         sliderValues = 0
-        timer5 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "playSlider", userInfo: nil, repeats: true)
+        timer4 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "playSlider", userInfo: nil, repeats: true)
     }
     func playSlider() {
         sliderValues=sliderValues+1
@@ -731,7 +588,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         seconds=seconds-1
         finalCountLabel.text = "\(seconds)"
         if seconds == 0 {
-            timer4.invalidate()
+            timer3.invalidate()
             finalCountLabel.hidden = true
             finalCountLabel.text = "10"
             awakeFromNib()
@@ -865,7 +722,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //# MARK: - TileOverlay
     func addTileOverlay() {
         let baseURL = NSBundle.mainBundle().bundleURL.absoluteString
-        let urlTemplate = baseURL.stringByAppendingString("/WITW/{z}/{x}/{y}.png/")
+        let urlTemplate = baseURL.stringByAppendingString("/July4thTiles/{z}/{x}/{y}.png/")
         let overlay = MKTileOverlay(URLTemplate:urlTemplate)
         overlay.geometryFlipped = true
         overlay.canReplaceMapContent = false
@@ -969,24 +826,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(tabBar)
         
         let tabImage0: UIImage = UIImage(named: "Food_Tab.png")!
-        let tabImage1: UIImage = UIImage(named: "Winery_Tab.png")!
-        let tabImage2: UIImage = UIImage(named: "Music_Tab.png")!
-        let tabImage3: UIImage = UIImage(named: "Crafter_Tab.png")!
-        let tabImage4: UIImage = UIImage(named: "Sponsors_Tab.png")!
-        let tabImage5: UIImage = UIImage(named: "Other_Tab.png")!
+        let tabImage1: UIImage = UIImage(named: "Music_Tab.png")!
+        let tabImage2: UIImage = UIImage(named: "Sponsors_Tab.png")!
+        let tabImage3: UIImage = UIImage(named: "Other_Tab.png")!
         
-        let item0 = UITabBarItem(title: "Food", image: tabImage0, selectedImage: nil)
-        let item1 = UITabBarItem(title: "Winery", image: tabImage1, selectedImage: nil)
-        let item2 = UITabBarItem(title: "Music", image: tabImage2, selectedImage: nil)
-        let item3 = UITabBarItem(title: "Crafter", image: tabImage3, selectedImage: nil)
-        let item4 = UITabBarItem(title: "Sponsors", image: tabImage4, selectedImage: nil)
-        let item5 = UITabBarItem(title: "Other", image: tabImage5, selectedImage: nil)
-        tabBar.items = [item0,item1,item2,item3,item4,item5]
+        let item0 = UITabBarItem(title: "Food Vendors", image: tabImage0, selectedImage: nil)
+        let item1 = UITabBarItem(title: "Entertainment", image: tabImage1, selectedImage: nil)
+        let item2 = UITabBarItem(title: "Sponsor", image: tabImage2, selectedImage: nil)
+        let item3 = UITabBarItem(title: "Others", image: tabImage3, selectedImage: nil)
+        tabBar.items = [item0,item1,item2,item3]
         
     }
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         self.stopCountDown()
-        timer2.invalidate()
         appTitle.text = "July 4th"
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
@@ -1044,12 +896,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if item.title == "Food" {
             scrollLabel.text = "Enjoy a delicious variety of tastes from appetizers to desserts."
-        } else if item.title == "Winery" {
-            scrollLabel.text = "To learn more about the Maryland wine events, please visit http://www.marylandwine.com/home"
         } else if item.title == "Music" {
-            scrollLabel.text = "Not only can you sample wine from the finest vineyards in Maryland, you can also enjoy live musical entertainment."
-        } else if item.title == "Crafter" {
-            scrollLabel.text = "Not only can you sample wine from the finest vineyards in Maryland, you can purchase products from our invitation-only craft show."
+            scrollLabel.text = "You can also enjoy live musical entertainment."
         } else if item.title == "Sponsors" {
             scrollLabel.text = "Thank you to the following sponsors who help make this event possible."
         } else {
