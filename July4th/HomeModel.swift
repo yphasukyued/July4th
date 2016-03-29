@@ -64,23 +64,17 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             
         }
         
-        var jsonElement: NSDictionary = NSDictionary()
         let locations: NSMutableArray = NSMutableArray()
         
-        //print(jsonResult)
-        
-        for(var i = 0; i < jsonResult.count; i++)
-        {
-            
-            jsonElement = jsonResult[i] as! NSDictionary
+        for item in jsonResult {
             
             let location = LocationModel()
-            let category = (jsonElement["Category"] as? String)!
-            let name = (jsonElement["Name"] as? String)!
-            let desc = (jsonElement["Description"] as? String)!
-            let url = (jsonElement["URL"] as? String)!
-            let latitude = (jsonElement["Y"] as? Double)!
-            let longitude = (jsonElement["X"] as? Double)!
+            let category = (item["Category"] as? String)!
+            let name = (item["Name"] as? String)!
+            let desc = (item["Description"] as? String)!
+            let url = (item["URL"] as? String)!
+            let latitude = (item["Y"] as? Double)!
+            let longitude = (item["X"] as? Double)!
             
             location.url = url as String
             location.category = category as String

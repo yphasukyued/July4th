@@ -123,8 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         view.addSubview(splashView)
         
         createDisclaimer()
-        
-        //awakeFromNib()
+
     }
     //# MARK: - Navigation Bar
     func createNavigationBar() {
@@ -132,14 +131,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         leftBtn.frame = CGRectMake(5, 32, 40, 48)
         leftBtn.setImage(UIImage(named: "List_White.png"), forState:.Normal)
         leftBtn.tintColor = UIColor.whiteColor()
-        leftBtn.addTarget(self, action: "leftBtnPress", forControlEvents:.TouchUpInside)
+        leftBtn.addTarget(self, action: #selector(ViewController.leftBtnPress), forControlEvents:.TouchUpInside)
         view.addSubview(leftBtn)
         
         rightBtn = UIButton(type: UIButtonType.System) as UIButton
         rightBtn.frame = CGRectMake(view.frame.width-45, 30, 28, 28)
         rightBtn.setImage(UIImage(named: "Map_Tab.png"), forState:.Normal)
         rightBtn.tintColor = UIColor.whiteColor()
-        rightBtn.addTarget(self, action: "rightBtnPress", forControlEvents:.TouchUpInside)
+        rightBtn.addTarget(self, action: #selector(ViewController.rightBtnPress), forControlEvents:.TouchUpInside)
         view.addSubview(rightBtn)
         
         homeBtn = UIButton(type: UIButtonType.System) as UIButton
@@ -147,7 +146,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         homeBtn.setImage(UIImage(named: "750-home.png"), forState:.Normal)
         homeBtn.tintColor = UIColor.whiteColor()
         homeBtn.hidden = true
-        homeBtn.addTarget(self, action: "homePress", forControlEvents:.TouchUpInside)
+        homeBtn.addTarget(self, action: #selector(ViewController.homePress), forControlEvents:.TouchUpInside)
         view.addSubview(homeBtn)
         
         appTitle = UILabel(frame: CGRectMake(10, 30, view.frame.width-20, 24))
@@ -175,7 +174,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
             }, completion:{(Bool)  in
         })
-        scrollLabel.text = "Mark your calendars for May 21-22, 2016, as we return for our 24th year!"
+        getMessage()
         var bounds: CGRect = scrollLabel.bounds
         let originalString: String = scrollLabel.text!
         let myString: NSString = originalString as NSString
@@ -305,10 +304,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.myDetail.text = item.category
             cell.mapButton.frame = CGRectMake(60, 65, 28, 28)
             cell.mapButton.setImage(UIImage(named: "852-map.png"), forState: UIControlState.Normal)
-            cell.mapButton.addTarget(self, action: "openMap", forControlEvents:.TouchUpInside)
+            cell.mapButton.addTarget(self, action: #selector(ViewController.openMap), forControlEvents:.TouchUpInside)
             cell.webButton.frame = CGRectMake(105, 65, 28, 28)
             cell.webButton.setImage(UIImage(named: "715-globe.png"), forState: UIControlState.Normal)
-            cell.webButton.addTarget(self, action: "openWeb", forControlEvents:.TouchUpInside)
+            cell.webButton.addTarget(self, action: #selector(ViewController.openWeb), forControlEvents:.TouchUpInside)
         }
         
         cell.backgroundColor = UIColor.clearColor()
@@ -433,10 +432,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.webView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
         })
     }
+    func getMessage() {
+        let url: NSURL = NSURL(string: "https://gis.howardcountymd.gov/iOS/July4th/GetScrollMessage.aspx")!
+        let data: NSData = NSData(contentsOfURL: url)!
+        
+        var jsonResult: NSMutableArray = NSMutableArray()
+        
+        do {
+            jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.AllowFragments) as! NSMutableArray
+            var jsonElement: NSDictionary = NSDictionary()
+            
+            jsonElement = jsonResult[0] as! NSDictionary
+            let messages = (jsonElement["Messages"] as? String)!
+            scrollLabel.text = messages
+
+        } catch let error as NSError {
+            print(error)
+        }
+    }
     //# MARK: - Scroll Label
     func createScrollLabel() {
         scrollLabel = UILabel(frame: CGRectMake(0, 60, self.view.frame.size.width, 22))
-        scrollLabel.text = "Mark your calendars for May 21-22, 2016, as we return for our 24th year!"
+        scrollLabel.text = ""
         scrollLabel.textColor=UIColor.whiteColor()
         scrollLabel.backgroundColor=UIColor(red: 32/255, green: 32/255, blue: 64/255, alpha: 1)
         scrollLabel.font = UIFont(name: "TrebuchetMS", size: 14)
@@ -444,11 +461,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         scrollLabel.alpha = 1
         self.view.addSubview(scrollLabel)
         
+        getMessage()
+        
         var bounds: CGRect = scrollLabel.bounds
         let originalString: String = scrollLabel.text!
         let myString: NSString = originalString as NSString
         bounds.size = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14.0)])
         scrollLabel.bounds = bounds;
+        
     }
     func timeScroll() {
         scrollLabel.center = CGPointMake(scrollLabel.center.x-2, scrollLabel.center.y);
@@ -509,7 +529,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         playBtn.setImage(UIImage(named: "461-play1.png"), forState:.Normal)
         playBtn.tintColor = UIColor.whiteColor()
         playBtn.hidden = false
-        playBtn.addTarget(self, action: "playPress", forControlEvents:.TouchUpInside)
+        playBtn.addTarget(self, action: #selector(ViewController.playPress), forControlEvents:.TouchUpInside)
         mainView.addSubview(playBtn)
     }
     func playPress() {
@@ -534,7 +554,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 slider.hidden = false
                 sliderValues = 0
                 seconds = 10
-                timer2 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "countDownTime", userInfo: nil, repeats: false)
+                timer2 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(ViewController.countDownTime), userInfo: nil, repeats: false)
                 self.startAudio()
         })
         
@@ -572,10 +592,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     func countDownTime() {
-        timer3 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "subtractTime", userInfo: nil, repeats: true)
+        timer3 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.subtractTime), userInfo: nil, repeats: true)
         
         sliderValues = 0
-        timer4 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "playSlider", userInfo: nil, repeats: true)
+        timer4 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.playSlider), userInfo: nil, repeats: true)
     }
     func playSlider() {
         sliderValues=sliderValues+1
@@ -619,7 +639,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         checkBtn = UIButton(type: UIButtonType.System) as UIButton
         checkBtn.frame = CGRectMake(10, disclaimerView.frame.size.height-90, 32, 32)
         checkBtn.setImage(UIImage(named: "Uncheckbox.png"), forState:.Normal)
-        checkBtn.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
+        checkBtn.addTarget(self, action: #selector(ViewController.btnTouched), forControlEvents:.TouchUpInside)
         disclaimerView.addSubview(checkBtn)
         
         let agreeLabel = UILabel(frame: CGRectMake(52, disclaimerView.frame.size.height-85, 100, 24))
@@ -633,7 +653,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         disclaimerBtn.setTitle("Accept and Continue", forState: .Normal)
         disclaimerBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         disclaimerBtn.titleLabel!.font = UIFont(name: "TrebuchetMS", size: 20)
-        disclaimerBtn.addTarget(self, action: "closeDisclaimer", forControlEvents: .TouchUpInside)
+        disclaimerBtn.addTarget(self, action: #selector(ViewController.closeDisclaimer), forControlEvents: .TouchUpInside)
         disclaimerBtn.backgroundColor=UIColor.lightGrayColor()
         disclaimerBtn.hidden = true
         disclaimerView.addSubview(disclaimerBtn)
@@ -650,7 +670,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         prefs.setValue("Yes", forKey: "Agreement")
         UIView.animateWithDuration(1, animations: {
             disclaimerView.frame = CGRectMake(0, self.view.frame.height, self.view.frame.width, self.view.frame.height)
-            timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "splash", userInfo: nil, repeats: false)
+            timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ViewController.splash), userInfo: nil, repeats: false)
         })
     }
     func splash() {
@@ -660,7 +680,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             splashView.frame = CGRectMake(0, self.view.frame.height, self.view.frame.width, self.view.frame.height)
             myActivityIndicator.stopAnimating()
         })
-        timer1 = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: "timeScroll", userInfo: nil, repeats: true)
+        timer1 = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: #selector(ViewController.timeScroll), userInfo: nil, repeats: true)
     }
     func btnTouched() {
         if check==false {
@@ -693,10 +713,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mapView.removeAnnotations( annotationsToRemove )
     }
     func setPin() {
-        for(var i = 0; i < feedItems.count; i++) {
-            let item: LocationModel = feedItems[i] as! LocationModel
-            let ann = MapPin(coordinate: CLLocationCoordinate2D(latitude: item.latitude!, longitude: item.longitude!), title: item.name!, subtitle: item.desc!, pin: "wiw.png")
-            mapView.addAnnotation(ann)
+        for obj : AnyObject in feedItems {
+            if let item: LocationModel = obj as? LocationModel {
+                let title = item.name
+                let subtitle = item.desc
+                let lat = item.latitude
+                let lng = item.longitude
+                let ann = MapPin(coordinate: CLLocationCoordinate2D(latitude: lat!, longitude: lng!), title: title!, subtitle: subtitle!, pin: "wiw.png")
+                mapView.addAnnotation(ann)
+            }
         }
     }
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -894,14 +919,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             })
         }
         
-        if item.title == "Food" {
+        if item.title == "Food Vendors" {
             scrollLabel.text = "Enjoy a delicious variety of tastes from appetizers to desserts."
-        } else if item.title == "Music" {
+        } else if item.title == "Entertainment" {
             scrollLabel.text = "You can also enjoy live musical entertainment."
-        } else if item.title == "Sponsors" {
+        } else if item.title == "Sponsor" {
             scrollLabel.text = "Thank you to the following sponsors who help make this event possible."
         } else {
-            scrollLabel.text = "Mark your calendars for May 21-22, 2016, as we return for our 24th year!"
+            getMessage()
         }
         var bounds: CGRect = scrollLabel.bounds
         let originalString: String = scrollLabel.text!
@@ -928,7 +953,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         locationBtn = UIButton(type: UIButtonType.System) as UIButton
         locationBtn.frame = CGRectMake(12, 0, 32, 32)
         locationBtn.setImage(UIImage(named: "Location_Tab.png"), forState:.Normal)
-        locationBtn.addTarget(self, action: "startLocationUpdates", forControlEvents:.TouchUpInside)
+        locationBtn.addTarget(self, action: #selector(ViewController.startLocationUpdates), forControlEvents:.TouchUpInside)
         locationBtn.tintColor = UIColor.whiteColor()
         mainMapView.addSubview(locationBtn)
         
@@ -953,7 +978,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         //Create the root layer
-        //animateView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+        animateView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
         rootLayer = animateView.layer
         
         //Set the root layer's attributes
