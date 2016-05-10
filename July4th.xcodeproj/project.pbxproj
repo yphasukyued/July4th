@@ -10,10 +10,10 @@
 		3612C5F01C95F5960062379F /* Event Merchandise.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E51C95F5960062379F /* Event Merchandise.png */; };
 		3612C5F11C95F5960062379F /* ATM 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E61C95F5960062379F /* ATM 2.png */; };
 		3612C5F21C95F5960062379F /* ATM 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E71C95F5960062379F /* ATM 1.png */; };
-		3612C5F31C95F5960062379F /* Food Vendor Area.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E81C95F5960062379F /* Food Vendor Area.png */; };
-		3612C5F41C95F5960062379F /* Main Stage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E91C95F5960062379F /* Main Stage.png */; };
+		3612C5F31C95F5960062379F /* Food Vendors.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E81C95F5960062379F /* Food Vendors.png */; };
+		3612C5F41C95F5960062379F /* Capital Style.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E91C95F5960062379F /* Capital Style.png */; };
 		3612C5F51C95F5960062379F /* Children's Games.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EA1C95F5960062379F /* Children's Games.png */; };
-		3612C5F61C95F5960062379F /* Children's Stage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EB1C95F5960062379F /* Children's Stage.png */; };
+		3612C5F61C95F5960062379F /* Childrens Stage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EB1C95F5960062379F /* Childrens Stage.png */; };
 		3612C5F71C95F5960062379F /* Spot-o-Pots 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EC1C95F5960062379F /* Spot-o-Pots 1.png */; };
 		3612C5F81C95F5960062379F /* First Aid 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5ED1C95F5960062379F /* First Aid 1.png */; };
 		3612C5F91C95F5960062379F /* Spot-o-Pots 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EE1C95F5960062379F /* Spot-o-Pots 2.png */; };
@@ -81,16 +81,17 @@
 		36BA30771C920A6F005939C5 /* 715-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305C1C920A6F005939C5 /* 715-globe.png */; };
 		36BA30781C920A6F005939C5 /* 852-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305D1C920A6F005939C5 /* 852-map.png */; };
 		36BA30791C920A6F005939C5 /* 881-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305E1C920A6F005939C5 /* 881-globe.png */; };
+		36FE4E1B1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36FE4E1A1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3612C5E51C95F5960062379F /* Event Merchandise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Event Merchandise.png"; sourceTree = "<group>"; };
 		3612C5E61C95F5960062379F /* ATM 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ATM 2.png"; sourceTree = "<group>"; };
 		3612C5E71C95F5960062379F /* ATM 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ATM 1.png"; sourceTree = "<group>"; };
-		3612C5E81C95F5960062379F /* Food Vendor Area.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Vendor Area.png"; sourceTree = "<group>"; };
-		3612C5E91C95F5960062379F /* Main Stage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main Stage.png"; sourceTree = "<group>"; };
+		3612C5E81C95F5960062379F /* Food Vendors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Vendors.png"; sourceTree = "<group>"; };
+		3612C5E91C95F5960062379F /* Capital Style.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Capital Style.png"; sourceTree = "<group>"; };
 		3612C5EA1C95F5960062379F /* Children's Games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Children's Games.png"; sourceTree = "<group>"; };
-		3612C5EB1C95F5960062379F /* Children's Stage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Children's Stage.png"; sourceTree = "<group>"; };
+		3612C5EB1C95F5960062379F /* Childrens Stage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Childrens Stage.png"; sourceTree = "<group>"; };
 		3612C5EC1C95F5960062379F /* Spot-o-Pots 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spot-o-Pots 1.png"; sourceTree = "<group>"; };
 		3612C5ED1C95F5960062379F /* First Aid 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "First Aid 1.png"; sourceTree = "<group>"; };
 		3612C5EE1C95F5960062379F /* Spot-o-Pots 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spot-o-Pots 2.png"; sourceTree = "<group>"; };
@@ -160,6 +161,7 @@
 		36BA305C1C920A6F005939C5 /* 715-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "715-globe.png"; sourceTree = "<group>"; };
 		36BA305D1C920A6F005939C5 /* 852-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "852-map.png"; sourceTree = "<group>"; };
 		36BA305E1C920A6F005939C5 /* 881-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "881-globe.png"; sourceTree = "<group>"; };
+		36FE4E1A1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "2016 Howard County 8666 V3.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,10 +181,10 @@
 				3612C5E51C95F5960062379F /* Event Merchandise.png */,
 				3612C5E61C95F5960062379F /* ATM 2.png */,
 				3612C5E71C95F5960062379F /* ATM 1.png */,
-				3612C5E81C95F5960062379F /* Food Vendor Area.png */,
-				3612C5E91C95F5960062379F /* Main Stage.png */,
+				3612C5E81C95F5960062379F /* Food Vendors.png */,
+				3612C5E91C95F5960062379F /* Capital Style.png */,
 				3612C5EA1C95F5960062379F /* Children's Games.png */,
-				3612C5EB1C95F5960062379F /* Children's Stage.png */,
+				3612C5EB1C95F5960062379F /* Childrens Stage.png */,
 				3612C5EC1C95F5960062379F /* Spot-o-Pots 1.png */,
 				3612C5ED1C95F5960062379F /* First Aid 1.png */,
 				3612C5EE1C95F5960062379F /* Spot-o-Pots 2.png */,
@@ -272,6 +274,7 @@
 				36BA304B1C920A6F005939C5 /* HC_Tab.png */,
 				36BA304C1C920A6F005939C5 /* Left_Tab.png */,
 				36203B8E1C93052E002AD265 /* Howard County 8865 2015 v3.mp3 */,
+				36FE4E1A1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 */,
 				36BA304D1C920A6F005939C5 /* Location_Tab.png */,
 				36BA304E1C920A6F005939C5 /* Winery_Tab.png */,
 				36BA304F1C920A6F005939C5 /* Music_Tab.png */,
@@ -363,13 +366,14 @@
 			files = (
 				3612C5FA1C95F5960062379F /* First Aid 2.png in Resources */,
 				3612C6121C95F5F00062379F /* Sponsor.png in Resources */,
+				36FE4E1B1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 in Resources */,
 				361E56201C924A5600D030BC /* digital-7.ttf in Resources */,
 				36BA302F1C9205F5005939C5 /* icon@2x.png in Resources */,
 				36BA303A1C9206BE005939C5 /* 462-pause1.png in Resources */,
 				36BA306D1C920A6F005939C5 /* Other_Tab.png in Resources */,
 				36BA30341C920647005939C5 /* Default.png in Resources */,
 				36BA30651C920A6F005939C5 /* Checkedbox.png in Resources */,
-				3612C5F31C95F5960062379F /* Food Vendor Area.png in Resources */,
+				3612C5F31C95F5960062379F /* Food Vendors.png in Resources */,
 				3612C5F91C95F5960062379F /* Spot-o-Pots 2.png in Resources */,
 				36203B8B1C92FF75002AD265 /* 4thjuly.jpg in Resources */,
 				36BA30671C920A6F005939C5 /* Left_Tab.png in Resources */,
@@ -397,7 +401,7 @@
 				3612C5F51C95F5960062379F /* Children's Games.png in Resources */,
 				3612C6071C95F5C40062379F /* Serra Brothers Italian Deli.png in Resources */,
 				36601CC51C94E69F00F142FC /* July4thTiles in Resources */,
-				3612C5F61C95F5960062379F /* Children's Stage.png in Resources */,
+				3612C5F61C95F5960062379F /* Childrens Stage.png in Resources */,
 				3612C5F81C95F5960062379F /* First Aid 1.png in Resources */,
 				3612C6111C95F5F00062379F /* Apple Ford Lincoln.png in Resources */,
 				3612C6181C95F5F00062379F /* Tourism & Promotion.png in Resources */,
@@ -418,7 +422,7 @@
 				36BA30331C920647005939C5 /* Default-568@2x.png in Resources */,
 				36BA30621C920A6F005939C5 /* Arrow_Left.png in Resources */,
 				36BA30711C920A6F005939C5 /* Sponsors.png in Resources */,
-				3612C5F41C95F5960062379F /* Main Stage.png in Resources */,
+				3612C5F41C95F5960062379F /* Capital Style.png in Resources */,
 				3612C5F21C95F5960062379F /* ATM 1.png in Resources */,
 				36BA30701C920A6F005939C5 /* Music.png in Resources */,
 				36BA30731C920A6F005939C5 /* Winery.png in Resources */,
@@ -548,6 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = July4th/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.howardcountymd.July4th;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -559,6 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = July4th/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.howardcountymd.July4th;
 				PRODUCT_NAME = "$(TARGET_NAME)";

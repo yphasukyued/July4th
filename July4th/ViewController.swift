@@ -284,7 +284,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.textLabel?.text = menus[indexPath.row]
             cell.textLabel?.textColor = UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
             cell.textLabel?.font = UIFont(name: "TrebuchetMS-Bold", size: 16)
-        } else if dataSource == "Others" {
+        } else if dataSource == "Others" || dataSource == "Entertainment" {
             let item: LocationModel = feedItems[indexPath.row] as! LocationModel
             cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
             cell.myButton1.setImage(UIImage(named: (item.name! as String)+".png"), forState: UIControlState.Normal)
@@ -295,7 +295,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             let item: LocationModel = feedItems[indexPath.row] as! LocationModel
             cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
-            cell.myButton1.setImage(UIImage(named: (item.name! as String)+".png"), forState: UIControlState.Normal)
+            cell.myButton1.setImage(UIImage(named: (item.category! as String)+".png"), forState: UIControlState.Normal)
             cell.myLabel1.frame = CGRectMake(55, 5, tableView.frame.width-50, 24)
             cell.myLabel1.text = item.name
             cell.myLabel2.frame = CGRectMake(55, 22, tableView.frame.width-50, 24)
@@ -507,9 +507,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mainView.addSubview(introText)
         
         finalCountLabel = UILabel(frame: CGRectMake(0, (animateView.frame.size.height/2), animateView.frame.width, 200))
-        finalCountLabel.text = "10"
+        finalCountLabel.text = "130"
         finalCountLabel.textColor=UIColor.greenColor()
-        finalCountLabel.font = UIFont(name: "digital-7", size: 240)
+        finalCountLabel.font = UIFont(name: "digital-7", size: 200)
         finalCountLabel.textAlignment = NSTextAlignment.Center
         finalCountLabel.hidden = true
         self.view.addSubview(finalCountLabel)
@@ -548,14 +548,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             mainView.backgroundColor=UIColor.blackColor()
             animateView.alpha = 1
             }, completion:{(Bool) in
-                finalCountLabel.hidden = false
-                finalCountLabel.text = "10"
+                finalCountLabel.hidden = true
+                finalCountLabel.text = "130"
                 slider.value = 0
                 slider.hidden = false
                 sliderValues = 0
-                seconds = 10
+                seconds = 130
                 timer2 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(ViewController.countDownTime), userInfo: nil, repeats: false)
                 self.startAudio()
+                
+                //self.startIntroAudio()
         })
         
     }
@@ -580,7 +582,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 mortor.removeFromSuperlayer()
         })
     }
-    func startAudio() {
+    func startIntroAudio() {
         let julySound = NSBundle.mainBundle().pathForResource("Howard County 8865 2015 v3", ofType: "mp3")
         do{
             audioPlayer = try AVAudioPlayer(contentsOfURL:NSURL(fileURLWithPath: julySound!), fileTypeHint: nil)
@@ -591,9 +593,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("Error getting the audio file")
         }
     }
+    func startAudio() {
+        let julySound = NSBundle.mainBundle().pathForResource("2016 Howard County 8666 V3", ofType: "mp3")
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOfURL:NSURL(fileURLWithPath: julySound!), fileTypeHint: nil)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+            musicPlay = true
+        }catch {
+            print("Error getting the audio file")
+        }
+    }
     func countDownTime() {
-        timer3 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.subtractTime), userInfo: nil, repeats: true)
-        
+        //timer3 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.subtractTime), userInfo: nil, repeats: true)
+        awakeFromNib()
         sliderValues = 0
         timer4 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.playSlider), userInfo: nil, repeats: true)
     }
@@ -610,7 +623,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if seconds == 0 {
             timer3.invalidate()
             finalCountLabel.hidden = true
-            finalCountLabel.text = "10"
+            finalCountLabel.text = "130"
             awakeFromNib()
         }
     }
