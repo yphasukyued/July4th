@@ -338,6 +338,7 @@
 				TargetAttributes = {
 					36BA30121C91E1EC005939C5 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = Y9QZN4Z8J5;
 					};
 				};
 			};
@@ -551,10 +552,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = July4th/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gov.howardcountymd.July4th;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.howardcountymd.iOSjuly4th;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -563,10 +565,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = July4th/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gov.howardcountymd.July4th;
+				PRODUCT_BUNDLE_IDENTIFIER = gov.howardcountymd.iOSjuly4th;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
