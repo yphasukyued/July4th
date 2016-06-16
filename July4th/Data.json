@@ -1,0 +1,82 @@
+{
+    "july4th":[
+              {
+               "name": "First Aid",
+               "type": "First Aid",
+               "x": -76.85645,
+               "y": 39.215258
+              },
+              {
+               "name": "First Aid",
+               "type": "First Aid",
+               "x": -76.857257,
+               "y": 39.214894
+              },
+              {
+               "name": "ATM",
+               "type": "ATM",
+               "x": -76.856828,
+               "y": 39.214549
+              },
+              {
+               "name": "ATM",
+               "type": "ATM",
+               "x": -76.856839,
+               "y": 39.214891
+              },
+              {
+               "name": "Information",
+               "type": "Information",
+               "x": -76.85622,
+               "y": 39.214563
+              },
+              {
+               "name": "Main Stage",
+               "type": "Main Stage",
+               "x": -76.855778,
+               "y": 39.214918
+              },
+              {
+               "name": "Spot-o-Pots",
+               "type": "Spot-o-Pots",
+               "x": -76.857286,
+               "y": 39.214646
+              },
+              {
+               "name": "Popcorn",
+               "type": "Food Vendors",
+               "x": -76.856832,
+               "y": 39.214804
+              },
+              {
+               "name": "Ice Cream",
+               "type": "Food Vendors",
+               "x": -76.856907,
+               "y": 39.214697
+              },
+              {
+               "name": "Ice Cream",
+               "type": "Food Vendors",
+               "x": -76.856908,
+               "y": 39.214516
+              },
+              {
+               "name": "Funnel Cakes",
+               "type": "Food Vendors",
+               "x": -76.856908,
+               "y": 39.214622
+              },
+              {
+               "name": "Horizon",
+               "type": "Sponsor",
+               "x": -76.856451,
+               "y": 39.214718
+              },
+              {
+               "name": "Whole Foods",
+               "type": "Sponsor",
+               "x": -76.85615,
+               "y": 39.214564
+              }
+              ]
+}

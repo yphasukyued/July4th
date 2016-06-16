@@ -47,14 +47,13 @@ var slider: UISlider = UISlider()
 
 let menus = ["Become a Sponsor", "Contact Us", "Directions & Transportation", "Event Map", "Event Merchandise", "FAQ", "Merriments", "Program Guide", "Terms and Conditions"]
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HomeModelProtocal, UITabBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HomeModelProtocal,MKMapViewDelegate, CLLocationManagerDelegate, UIActionSheetDelegate, UIWebViewDelegate {
     
     var feedItems: NSArray = NSArray()
     var selectedLocation : LocationModel = LocationModel()
     
     var tableView: UITableView = UITableView()
     var selectedIndexPath : NSIndexPath?
-    var tabBar: UITabBar = UITabBar()
     var mapView: MKMapView!
     var locationManager = CLLocationManager()
     var webView: UIWebView = UIWebView()
@@ -75,7 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         view.backgroundColor=UIColor(red: 32/255, green: 32/255, blue: 64/255, alpha: 1)
         
-        mainView=UIView(frame: CGRectMake(0, 85, view.frame.width, view.frame.height-132))
+        mainView=UIView(frame: CGRectMake(0, 85, view.frame.width, view.frame.height-85))
         mainView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
         view.addSubview(mainView)
         
@@ -115,8 +114,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myActivityIndicator.startAnimating()
         view.addSubview(myActivityIndicator)
         
-        
-
         splashView  = UIImageView(frame:CGRectMake(0, 0, view.frame.width, view.frame.height));
         splashView.image = UIImage(named:"Default.png")
         splashView.alpha = 1
@@ -156,7 +153,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         appTitle.textAlignment = NSTextAlignment.Center
         view.addSubview(appTitle)
         
-        createTabBar()
+        //createTabBar()
     }
     func homePress() {
         self.stopCountDown()
@@ -168,7 +165,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         homeBtn.hidden = true
         UIView.animateWithDuration(1, animations:  {() in
             rightBtn.tintColor = UIColor.whiteColor()
-            self.tabBar.tintColor = UIColor.grayColor()
             menuView.frame = CGRectMake(-(mainView.frame.width), 0, menuView.frame.width, menuView.frame.height)
             self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
             mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
@@ -184,37 +180,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func leftBtnPress() {
         self.stopCountDown()
         appTitle.text = "July 4th"
+        locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingHeading()
+        selectedIndexPath = nil
+        mapDisplay = "Off"
+        dataSource = "Others"
+        myActivityIndicator.startAnimating()
         rightBtn.tintColor = UIColor.whiteColor()
-        self.tabBar.tintColor = UIColor.grayColor()
-        if menuDisplay == "Off" {
-            menuDisplay = "On"
-            mapDisplay = "Off"
-            leftBtn.tintColor = UIColor(red: 255/255, green: 0/255, blue: 128/255, alpha: 1)
-            dataSource = "Slide"
+        leftBtn.hidden = true
+        homeBtn.hidden = false
+        if menuDisplay == "On" {
             UIView.animateWithDuration(1, animations:  {() in
                 menuView.alpha = 0
-                menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width, mainView.frame.height)
+                menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
                 self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
                 mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
                 }, completion:{(Bool)  in
-                    self.itemsDownloaded(menus)
-                    menuView.backgroundColor = UIColor.whiteColor()
+                    let homeModel = HomeModel()
+                    homeModel.delegate = self
+                    homeModel.downloadItems("Others")
+                    
+                    menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
                     menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width, mainView.frame.height)
-                    UIView.animateWithDuration(1, animations: {() in
+                    UIView.animateWithDuration(1.0, animations: {() in
                         menuView.alpha = 1
-                        menuView.frame = CGRectMake(0, 0, mainView.frame.width-60, mainView.frame.height)
+                        leftBtn.tintColor = UIColor.whiteColor()
+                        menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
                         self.tableView.frame = CGRectMake(0, 10, menuView.frame.width-20, menuView.frame.height-20)
                         }, completion:{(Bool) in
-                            
+                            menuDisplay = "Off"
                     })
             })
-            
-        } else if menuDisplay == "On" {
-            menuDisplay = "Off"
-            leftBtn.tintColor = UIColor.whiteColor()
-            UIView.animateWithDuration(1.0, animations: {
-                menuView.alpha = 1
-                menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
+        } else if menuDisplay == "Off" {
+            UIView.animateWithDuration(1, animations:  {() in
+                let homeModel = HomeModel()
+                homeModel.delegate = self
+                homeModel.downloadItems("Others")
+                menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
+                menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
+                self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
+                mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
+                }, completion:{(Bool)  in
+                    UIView.animateWithDuration(1.0, animations: {() in
+                        menuView.alpha = 1
+                        leftBtn.tintColor = UIColor.whiteColor()
+                        menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
+                        self.tableView.frame = CGRectMake(0, 10, menuView.frame.width-20, menuView.frame.height-20)
+                        }, completion:{(Bool) in
+                            menuDisplay = "Off"
+                    })
             })
         }
     }
@@ -224,7 +238,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
         leftBtn.tintColor = UIColor.whiteColor()
-        self.tabBar.tintColor = UIColor.grayColor()
         if mapDisplay == "Off" {
             mapDisplay = "On"
             menuDisplay = "Off"
@@ -235,6 +248,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
                 self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
                 mainMapView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
+                
             })
         } else if mapDisplay == "On" {
             mapDisplay = "Off"
@@ -274,88 +288,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return MyTableViewCell.defaultHeight
             }
         }
-        
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = MyTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "myIdentifier")
-        //let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-        
-        if dataSource == "Slide" {
-            cell.textLabel?.text = menus[indexPath.row]
-            cell.textLabel?.textColor = UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
-            cell.textLabel?.font = UIFont(name: "TrebuchetMS-Bold", size: 16)
-        } else if dataSource == "Others" || dataSource == "Entertainment" {
-            let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-            cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
-            cell.myButton1.setImage(UIImage(named: (item.name! as String)+".png"), forState: UIControlState.Normal)
-            cell.myLabel1.frame = CGRectMake(55, 5, tableView.frame.width-50, 24)
-            cell.myLabel1.text = item.name
-            cell.myLabel2.frame = CGRectMake(55, 22, tableView.frame.width-50, 24)
-            cell.myLabel2.text = item.desc
-        } else {
-            let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-            cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
-            cell.myButton1.setImage(UIImage(named: (item.category! as String)+".png"), forState: UIControlState.Normal)
-            cell.myLabel1.frame = CGRectMake(55, 5, tableView.frame.width-50, 24)
-            cell.myLabel1.text = item.name
-            cell.myLabel2.frame = CGRectMake(55, 22, tableView.frame.width-50, 24)
-            cell.myLabel2.text = item.desc
-            cell.myDetail.frame = CGRectMake(55, 39, tableView.frame.width-50, 24)
-            cell.myDetail.text = item.category
-            cell.mapButton.frame = CGRectMake(60, 65, 28, 28)
-            cell.mapButton.setImage(UIImage(named: "852-map.png"), forState: UIControlState.Normal)
-            cell.mapButton.addTarget(self, action: #selector(ViewController.openMap), forControlEvents:.TouchUpInside)
-            cell.webButton.frame = CGRectMake(105, 65, 28, 28)
-            cell.webButton.setImage(UIImage(named: "715-globe.png"), forState: UIControlState.Normal)
-            cell.webButton.addTarget(self, action: #selector(ViewController.openWeb), forControlEvents:.TouchUpInside)
-        }
-        
+        let item: LocationModel = feedItems[indexPath.row] as! LocationModel
+        cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
+        cell.myButton1.setImage(UIImage(named: (item.category! as String)+".png"), forState: UIControlState.Normal)
+        cell.myLabel1.frame = CGRectMake(55, 10, tableView.frame.width-50, 24)
+        cell.myLabel1.text = item.name
         cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if dataSource == "Slide" {
-            menuPress(indexPath.row)
-        } else if dataSource == "Others" {
-            
-            let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-            
-            let center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: item.latitude!, longitude: item.longitude!)
-            mapView.centerCoordinate = center
-            let span = MKCoordinateSpanMake(0.0015, 0.0015)
-            let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
-            mapView.setRegion(region, animated: true)
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = center
-            annotation.title = item.name
-            annotation.subtitle = item.desc
-            
-            mapView.addAnnotation(annotation)
-            
-            rightBtnPress()
-            
-        } else {
-            
-            let previousIndexPath = selectedIndexPath
-            if indexPath == selectedIndexPath {
-                selectedIndexPath = nil
-            } else {
-                selectedIndexPath = indexPath
-            }
-            
-            var indexPaths : Array<NSIndexPath> = []
-            if let previous = previousIndexPath {
-                indexPaths += [previous]
-            }
-            if let current = selectedIndexPath {
-                indexPaths += [current]
-            }
-            if indexPaths.count > 0 {
-                tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
-            }
-        }
+
+        let item: LocationModel = feedItems[indexPath.row] as! LocationModel
+        
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: item.latitude!, longitude: item.longitude!)
+        mapView.centerCoordinate = center
+        let span = MKCoordinateSpanMake(0.0015, 0.0015)
+        let region = MKCoordinateRegion(center: mapView.centerCoordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = center
+        annotation.title = item.name
+        
+        mapView.addAnnotation(annotation)
+        
+        rightBtnPress()
+
     }
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         (cell as! MyTableViewCell).watchFrameChanges()
@@ -369,38 +331,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.ignoreFrameChanges()
         }
     }
-    func menuPress(index: NSInteger) {
-        leftBtn.hidden = true
-        homeBtn.hidden = false
-        if index == 0 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/sponsors/become-a-sponsor/")
-        } else if index == 1 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/contact-us/")
-        } else if index == 2 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/directions-transportation/")
-        } else if index == 3 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/event-map/")
-        } else if index == 4 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/merchandise/")
-        } else if index == 5 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/frequently-asked-questions/")
-        } else if index == 6 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/artisans-entertainment/merriments/")
-        } else if index == 7 {
-            closeSlide()
-            self.openWebView("http://www.wineinthewoods.com/information/program-guide/")
-        } else if index == 8 {
-            closeSlide()
-            self.openDisclaimer()
-        }
-    }
+
     func openMap() {
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
@@ -415,22 +346,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let annotation = MKPointAnnotation()
         annotation.coordinate = center
         annotation.title = item.name
-        annotation.subtitle = item.desc
         
         mapView.addAnnotation(annotation)
         
         rightBtnPress()
-    }
-    func openWeb() {
-        let item: LocationModel = feedItems[selectedIndexPath!.row] as! LocationModel
-        openWebView(item.url!)
-    }
-    func openWebView(url: NSString) {
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: url as String)!))
-        UIView.animateWithDuration(1.0, animations: {
-            menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
-            self.webView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-        })
     }
     func getMessage() {
         let url: NSURL = NSURL(string: "https://gis.howardcountymd.gov/iOS/July4th/GetScrollMessage.aspx")!
@@ -495,7 +414,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mainView.addSubview(introImageView)
         
         introText = UITextView(frame: CGRectMake(10, 90, mainView.frame.width-20, mainView.frame.height-140))
-        introText.text = "\nDate: Monday, July 4, 2015 5-10 PM\nFireworks at Dusk\nRain date: Tuesday, July 5(Fireworks Only)\nInclement weather line: 410-313-4451\n\nCounty Executive Allan H. Kittleman Invites You to the Columbia Lakefront for an Evening of Family Fun and Fireworks!\n\nNote: Those wishing to place a blanket or sheet may do so beginning at 8 AM on July 4. Those wishing to place a tarp on the grass may do so beginning at 3 PM. Placement of tarps must wait until 3 PM in order to protect the grass. For more information on your tarp, contact the Columbia Association at 410-312-6330. No boats are permitted on the lake July 3-5.\n\nLittle Patuxent Parkway is most likely closing at approximately 7 PM and is not be reopened until the conclusion of the fireworks."
+        introText.text = "\nDate: Monday, July 4, 2016 5-10 PM\nFireworks at Dusk\nRain date: Tuesday, July 5(Fireworks Only)\nInclement weather line: 410-313-4451\n\nCounty Executive Allan H. Kittleman Invites You to the Columbia Lakefront for an Evening of Family Fun and Fireworks!\n\nNote: Those wishing to place a blanket or sheet may do so beginning at 8 AM on July 4. Those wishing to place a tarp on the grass may do so beginning at 3 PM. Placement of tarps must wait until 3 PM in order to protect the grass. For more information on your tarp, contact the Columbia Association at 410-312-6330. No boats are permitted on the lake July 3-5. We encourage all attendees to arrive early to avoid traffic congestion.\n\nLittle Patuxent Parkway will be closed at approximately 6:30-7:30 PM and is not to be reopened until the conclusion of the fireworks."
         introText.textColor=UIColor.whiteColor()
         introText.font = UIFont(name: "TrebuchetMS", size: 14)
         introText.backgroundColor=UIColor.clearColor()
@@ -556,10 +475,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 seconds = 130
                 timer2 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(ViewController.countDownTime), userInfo: nil, repeats: false)
                 self.startAudio()
-                
-                //self.startIntroAudio()
         })
-        
     }
     func stopCountDown() {
         fireworkDisplay = "Off"
@@ -581,17 +497,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 mortor.removeFromSuperlayer()
         })
-    }
-    func startIntroAudio() {
-        let julySound = NSBundle.mainBundle().pathForResource("Howard County 8865 2015 v3", ofType: "mp3")
-        do{
-            audioPlayer = try AVAudioPlayer(contentsOfURL:NSURL(fileURLWithPath: julySound!), fileTypeHint: nil)
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-            musicPlay = true
-        }catch {
-            print("Error getting the audio file")
-        }
     }
     func startAudio() {
         let julySound = NSBundle.mainBundle().pathForResource("2016 Howard County 8666 V3", ofType: "mp3")
@@ -729,10 +634,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         for obj : AnyObject in feedItems {
             if let item: LocationModel = obj as? LocationModel {
                 let title = item.name
-                let subtitle = item.desc
                 let lat = item.latitude
                 let lng = item.longitude
-                let ann = MapPin(coordinate: CLLocationCoordinate2D(latitude: lat!, longitude: lng!), title: title!, subtitle: subtitle!, pin: "wiw.png")
+                let ann = MapPin(coordinate: CLLocationCoordinate2D(latitude: lat!, longitude: lng!), title: title!, pin: "wiw.png")
                 mapView.addAnnotation(ann)
             }
         }
@@ -820,7 +724,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 UIApplication.sharedApplication().openURL(url)
             }
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(settingsAction)
         alertController.addAction(cancelAction)
@@ -855,97 +758,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else if gpsDisplay == "Off" {
             stopLocationUpdates()
         }
-    }
-    //# MARK: - Tab Bar
-    func createTabBar() {
-        tabBar = UITabBar(frame: CGRectMake(0,self.view.frame.height-48,self.view.frame.width,50))
-        tabBar.backgroundColor=UIColor(red: 102/255, green: 0/255, blue: 102/255, alpha: 1)
-        tabBar.delegate = self
-        self.view.addSubview(tabBar)
-        
-        let tabImage0: UIImage = UIImage(named: "Food_Tab.png")!
-        let tabImage1: UIImage = UIImage(named: "Music_Tab.png")!
-        let tabImage2: UIImage = UIImage(named: "Sponsors_Tab.png")!
-        let tabImage3: UIImage = UIImage(named: "Other_Tab.png")!
-        
-        let item0 = UITabBarItem(title: "Food Vendors", image: tabImage0, selectedImage: nil)
-        let item1 = UITabBarItem(title: "Entertainment", image: tabImage1, selectedImage: nil)
-        let item2 = UITabBarItem(title: "Sponsor", image: tabImage2, selectedImage: nil)
-        let item3 = UITabBarItem(title: "Others", image: tabImage3, selectedImage: nil)
-        tabBar.items = [item0,item1,item2,item3]
-        
-    }
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        self.stopCountDown()
-        appTitle.text = "July 4th"
-        locationManager.stopUpdatingLocation()
-        locationManager.stopUpdatingHeading()
-        selectedIndexPath = nil
-        mapDisplay = "Off"
-        dataSource = item.title!
-        myActivityIndicator.startAnimating()
-        rightBtn.tintColor = UIColor.whiteColor()
-        leftBtn.hidden = true
-        homeBtn.hidden = false
-        if menuDisplay == "On" {
-            UIView.animateWithDuration(1, animations:  {() in
-                menuView.alpha = 0
-                menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
-                self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                }, completion:{(Bool)  in
-                    let homeModel = HomeModel()
-                    homeModel.delegate = self
-                    homeModel.downloadItems(item.title! as String)
-                    
-                    menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
-                    menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width, mainView.frame.height)
-                    UIView.animateWithDuration(1.0, animations: {() in
-                        menuView.alpha = 1
-                        leftBtn.tintColor = UIColor.whiteColor()
-                        self.tabBar.tintColor = UIColor(red: 255/255, green: 0/255, blue: 128/255, alpha: 1)
-                        menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-                        self.tableView.frame = CGRectMake(0, 10, menuView.frame.width-20, menuView.frame.height-20)
-                        }, completion:{(Bool) in
-                            menuDisplay = "Off"
-                    })
-            })
-        } else if menuDisplay == "Off" {
-            UIView.animateWithDuration(1, animations:  {() in
-                let homeModel = HomeModel()
-                homeModel.delegate = self
-                homeModel.downloadItems(item.title! as String)
-                menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
-                menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-                self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                }, completion:{(Bool)  in
-                    UIView.animateWithDuration(1.0, animations: {() in
-                        menuView.alpha = 1
-                        leftBtn.tintColor = UIColor.whiteColor()
-                        self.tabBar.tintColor = UIColor(red: 255/255, green: 0/255, blue: 128/255, alpha: 1)
-                        menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-                        self.tableView.frame = CGRectMake(0, 10, menuView.frame.width-20, menuView.frame.height-20)
-                        }, completion:{(Bool) in
-                            menuDisplay = "Off"
-                    })
-            })
-        }
-        
-        if item.title == "Food Vendors" {
-            scrollLabel.text = "Enjoy a delicious variety of tastes from appetizers to desserts."
-        } else if item.title == "Entertainment" {
-            scrollLabel.text = "You can also enjoy live musical entertainment."
-        } else if item.title == "Sponsor" {
-            scrollLabel.text = "Thank you to the following sponsors who help make this event possible."
-        } else {
-            getMessage()
-        }
-        var bounds: CGRect = scrollLabel.bounds
-        let originalString: String = scrollLabel.text!
-        let myString: NSString = originalString as NSString
-        bounds.size = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14.0)])
-        scrollLabel.bounds = bounds;
     }
     //# MARK: - Web and Map View
     func createWebAndMapView() {

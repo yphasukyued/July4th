@@ -7,36 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3604C26C1D0EF2380030C8C1 /* July4thTiles in Resources */ = {isa = PBXBuildFile; fileRef = 3604C26B1D0EF2380030C8C1 /* July4thTiles */; };
 		3612C5F01C95F5960062379F /* Event Merchandise.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E51C95F5960062379F /* Event Merchandise.png */; };
-		3612C5F11C95F5960062379F /* ATM 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E61C95F5960062379F /* ATM 2.png */; };
-		3612C5F21C95F5960062379F /* ATM 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E71C95F5960062379F /* ATM 1.png */; };
+		3612C5F11C95F5960062379F /* ATM.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E61C95F5960062379F /* ATM.png */; };
 		3612C5F31C95F5960062379F /* Food Vendors.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E81C95F5960062379F /* Food Vendors.png */; };
-		3612C5F41C95F5960062379F /* Capital Style.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E91C95F5960062379F /* Capital Style.png */; };
-		3612C5F51C95F5960062379F /* Children's Games.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EA1C95F5960062379F /* Children's Games.png */; };
-		3612C5F61C95F5960062379F /* Childrens Stage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EB1C95F5960062379F /* Childrens Stage.png */; };
-		3612C5F71C95F5960062379F /* Spot-o-Pots 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EC1C95F5960062379F /* Spot-o-Pots 1.png */; };
-		3612C5F81C95F5960062379F /* First Aid 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5ED1C95F5960062379F /* First Aid 1.png */; };
-		3612C5F91C95F5960062379F /* Spot-o-Pots 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EE1C95F5960062379F /* Spot-o-Pots 2.png */; };
-		3612C5FA1C95F5960062379F /* First Aid 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EF1C95F5960062379F /* First Aid 2.png */; };
-		3612C6021C95F5C40062379F /* A & B Soft Ice Cream.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5FC1C95F5C40062379F /* A & B Soft Ice Cream.png */; };
-		3612C6031C95F5C40062379F /* Old Fashioned Kettle Korn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5FD1C95F5C40062379F /* Old Fashioned Kettle Korn.png */; };
-		3612C6041C95F5C40062379F /* Convenience Catering.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5FE1C95F5C40062379F /* Convenience Catering.png */; };
-		3612C6051C95F5C40062379F /* Hoffmans PA Dutch Funnel Cakes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5FF1C95F5C40062379F /* Hoffmans PA Dutch Funnel Cakes.png */; };
-		3612C6061C95F5C40062379F /* Salernos Restaurant & Catering.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C6001C95F5C40062379F /* Salernos Restaurant & Catering.png */; };
-		3612C6071C95F5C40062379F /* Serra Brothers Italian Deli.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C6011C95F5C40062379F /* Serra Brothers Italian Deli.png */; };
-		3612C6111C95F5F00062379F /* Apple Ford Lincoln.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C6091C95F5F00062379F /* Apple Ford Lincoln.png */; };
+		3612C5F41C95F5960062379F /* Main Stage.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5E91C95F5960062379F /* Main Stage.png */; };
+		3612C5F91C95F5960062379F /* Spot-o-Pots.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EE1C95F5960062379F /* Spot-o-Pots.png */; };
+		3612C5FA1C95F5960062379F /* First Aid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C5EF1C95F5960062379F /* First Aid.png */; };
 		3612C6121C95F5F00062379F /* Sponsor.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C60A1C95F5F00062379F /* Sponsor.png */; };
-		3612C6131C95F5F00062379F /* Columbia Association.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C60B1C95F5F00062379F /* Columbia Association.png */; };
-		3612C6141C95F5F00062379F /* Economic Development Authority.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C60C1C95F5F00062379F /* Economic Development Authority.png */; };
-		3612C6151C95F5F00062379F /* Edys.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C60D1C95F5F00062379F /* Edys.png */; };
-		3612C6161C95F5F00062379F /* Shannon-Baum.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C60E1C95F5F00062379F /* Shannon-Baum.png */; };
-		3612C6171C95F5F00062379F /* Pump It Up.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C60F1C95F5F00062379F /* Pump It Up.png */; };
-		3612C6181C95F5F00062379F /* Tourism & Promotion.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C6101C95F5F00062379F /* Tourism & Promotion.png */; };
-		3612C61A1C95F7D40062379F /* Information.png in Resources */ = {isa = PBXBuildFile; fileRef = 3612C6191C95F7D40062379F /* Information.png */; };
 		361E56201C924A5600D030BC /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30361C92065A005939C5 /* digital-7.ttf */; };
 		36203B8B1C92FF75002AD265 /* 4thjuly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 36203B8A1C92FF75002AD265 /* 4thjuly.jpg */; };
 		36203B8F1C93052E002AD265 /* Howard County 8865 2015 v3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36203B8E1C93052E002AD265 /* Howard County 8865 2015 v3.mp3 */; };
-		36601CC51C94E69F00F142FC /* July4thTiles in Resources */ = {isa = PBXBuildFile; fileRef = 36601CC41C94E69F00F142FC /* July4thTiles */; };
+		36769D551D118F0500CD0BB2 /* Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 36769D541D118F0500CD0BB2 /* Data.json */; };
 		36BA30171C91E1EC005939C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BA30161C91E1EC005939C5 /* AppDelegate.swift */; };
 		36BA30191C91E1EC005939C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BA30181C91E1EC005939C5 /* ViewController.swift */; };
 		36BA301E1C91E1EC005939C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36BA301D1C91E1EC005939C5 /* Assets.xcassets */; };
@@ -56,7 +38,6 @@
 		36BA30421C920964005939C5 /* MapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BA303E1C920964005939C5 /* MapPin.swift */; };
 		36BA305F1C920A6F005939C5 /* Uncheckbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30441C920A6F005939C5 /* Uncheckbox.png */; };
 		36BA30601C920A6F005939C5 /* 750-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30451C920A6F005939C5 /* 750-home.png */; };
-		36BA30611C920A6F005939C5 /* 735-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30461C920A6F005939C5 /* 735-phone.png */; };
 		36BA30621C920A6F005939C5 /* Arrow_Left.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30471C920A6F005939C5 /* Arrow_Left.png */; };
 		36BA30631C920A6F005939C5 /* List_White.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30481C920A6F005939C5 /* List_White.png */; };
 		36BA30641C920A6F005939C5 /* wiw.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30491C920A6F005939C5 /* wiw.png */; };
@@ -64,56 +45,23 @@
 		36BA30661C920A6F005939C5 /* HC_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA304B1C920A6F005939C5 /* HC_Tab.png */; };
 		36BA30671C920A6F005939C5 /* Left_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA304C1C920A6F005939C5 /* Left_Tab.png */; };
 		36BA30681C920A6F005939C5 /* Location_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA304D1C920A6F005939C5 /* Location_Tab.png */; };
-		36BA30691C920A6F005939C5 /* Winery_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA304E1C920A6F005939C5 /* Winery_Tab.png */; };
-		36BA306A1C920A6F005939C5 /* Music_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA304F1C920A6F005939C5 /* Music_Tab.png */; };
-		36BA306B1C920A6F005939C5 /* Food_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30501C920A6F005939C5 /* Food_Tab.png */; };
-		36BA306C1C920A6F005939C5 /* Sponsors_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30511C920A6F005939C5 /* Sponsors_Tab.png */; };
-		36BA306D1C920A6F005939C5 /* Other_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30521C920A6F005939C5 /* Other_Tab.png */; };
-		36BA306E1C920A6F005939C5 /* Crafter_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30531C920A6F005939C5 /* Crafter_Tab.png */; };
 		36BA306F1C920A6F005939C5 /* Map_Tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30541C920A6F005939C5 /* Map_Tab.png */; };
-		36BA30701C920A6F005939C5 /* Music.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30551C920A6F005939C5 /* Music.png */; };
-		36BA30711C920A6F005939C5 /* Sponsors.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30561C920A6F005939C5 /* Sponsors.png */; };
-		36BA30721C920A6F005939C5 /* Crafter.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30571C920A6F005939C5 /* Crafter.png */; };
-		36BA30731C920A6F005939C5 /* Winery.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30581C920A6F005939C5 /* Winery.png */; };
-		36BA30741C920A6F005939C5 /* Direction.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA30591C920A6F005939C5 /* Direction.png */; };
-		36BA30751C920A6F005939C5 /* Food.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305A1C920A6F005939C5 /* Food.png */; };
-		36BA30761C920A6F005939C5 /* Other.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305B1C920A6F005939C5 /* Other.png */; };
-		36BA30771C920A6F005939C5 /* 715-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305C1C920A6F005939C5 /* 715-globe.png */; };
 		36BA30781C920A6F005939C5 /* 852-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305D1C920A6F005939C5 /* 852-map.png */; };
-		36BA30791C920A6F005939C5 /* 881-globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA305E1C920A6F005939C5 /* 881-globe.png */; };
 		36FE4E1B1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36FE4E1A1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3604C26B1D0EF2380030C8C1 /* July4thTiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = July4thTiles; sourceTree = "<group>"; };
 		3612C5E51C95F5960062379F /* Event Merchandise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Event Merchandise.png"; sourceTree = "<group>"; };
-		3612C5E61C95F5960062379F /* ATM 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ATM 2.png"; sourceTree = "<group>"; };
-		3612C5E71C95F5960062379F /* ATM 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ATM 1.png"; sourceTree = "<group>"; };
+		3612C5E61C95F5960062379F /* ATM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ATM.png; sourceTree = "<group>"; };
 		3612C5E81C95F5960062379F /* Food Vendors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Food Vendors.png"; sourceTree = "<group>"; };
-		3612C5E91C95F5960062379F /* Capital Style.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Capital Style.png"; sourceTree = "<group>"; };
-		3612C5EA1C95F5960062379F /* Children's Games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Children's Games.png"; sourceTree = "<group>"; };
-		3612C5EB1C95F5960062379F /* Childrens Stage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Childrens Stage.png"; sourceTree = "<group>"; };
-		3612C5EC1C95F5960062379F /* Spot-o-Pots 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spot-o-Pots 1.png"; sourceTree = "<group>"; };
-		3612C5ED1C95F5960062379F /* First Aid 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "First Aid 1.png"; sourceTree = "<group>"; };
-		3612C5EE1C95F5960062379F /* Spot-o-Pots 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spot-o-Pots 2.png"; sourceTree = "<group>"; };
-		3612C5EF1C95F5960062379F /* First Aid 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "First Aid 2.png"; sourceTree = "<group>"; };
-		3612C5FC1C95F5C40062379F /* A & B Soft Ice Cream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "A & B Soft Ice Cream.png"; sourceTree = "<group>"; };
-		3612C5FD1C95F5C40062379F /* Old Fashioned Kettle Korn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Old Fashioned Kettle Korn.png"; sourceTree = "<group>"; };
-		3612C5FE1C95F5C40062379F /* Convenience Catering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Convenience Catering.png"; sourceTree = "<group>"; };
-		3612C5FF1C95F5C40062379F /* Hoffmans PA Dutch Funnel Cakes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hoffmans PA Dutch Funnel Cakes.png"; sourceTree = "<group>"; };
-		3612C6001C95F5C40062379F /* Salernos Restaurant & Catering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Salernos Restaurant & Catering.png"; sourceTree = "<group>"; };
-		3612C6011C95F5C40062379F /* Serra Brothers Italian Deli.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Serra Brothers Italian Deli.png"; sourceTree = "<group>"; };
-		3612C6091C95F5F00062379F /* Apple Ford Lincoln.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Apple Ford Lincoln.png"; sourceTree = "<group>"; };
+		3612C5E91C95F5960062379F /* Main Stage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Main Stage.png"; sourceTree = "<group>"; };
+		3612C5EE1C95F5960062379F /* Spot-o-Pots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spot-o-Pots.png"; sourceTree = "<group>"; };
+		3612C5EF1C95F5960062379F /* First Aid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "First Aid.png"; sourceTree = "<group>"; };
 		3612C60A1C95F5F00062379F /* Sponsor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sponsor.png; sourceTree = "<group>"; };
-		3612C60B1C95F5F00062379F /* Columbia Association.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Columbia Association.png"; sourceTree = "<group>"; };
-		3612C60C1C95F5F00062379F /* Economic Development Authority.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Economic Development Authority.png"; sourceTree = "<group>"; };
-		3612C60D1C95F5F00062379F /* Edys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edys.png; sourceTree = "<group>"; };
-		3612C60E1C95F5F00062379F /* Shannon-Baum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shannon-Baum.png"; sourceTree = "<group>"; };
-		3612C60F1C95F5F00062379F /* Pump It Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pump It Up.png"; sourceTree = "<group>"; };
-		3612C6101C95F5F00062379F /* Tourism & Promotion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tourism & Promotion.png"; sourceTree = "<group>"; };
-		3612C6191C95F7D40062379F /* Information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Information.png; sourceTree = "<group>"; };
 		36203B8A1C92FF75002AD265 /* 4thjuly.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4thjuly.jpg; sourceTree = "<group>"; };
 		36203B8E1C93052E002AD265 /* Howard County 8865 2015 v3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Howard County 8865 2015 v3.mp3"; sourceTree = "<group>"; };
-		36601CC41C94E69F00F142FC /* July4thTiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = July4thTiles; sourceTree = "<group>"; };
+		36769D541D118F0500CD0BB2 /* Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Data.json; sourceTree = "<group>"; };
 		36BA30131C91E1EC005939C5 /* July4th.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = July4th.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36BA30161C91E1EC005939C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36BA30181C91E1EC005939C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +84,6 @@
 		36BA303E1C920964005939C5 /* MapPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPin.swift; sourceTree = "<group>"; };
 		36BA30441C920A6F005939C5 /* Uncheckbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Uncheckbox.png; sourceTree = "<group>"; };
 		36BA30451C920A6F005939C5 /* 750-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "750-home.png"; sourceTree = "<group>"; };
-		36BA30461C920A6F005939C5 /* 735-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "735-phone.png"; sourceTree = "<group>"; };
 		36BA30471C920A6F005939C5 /* Arrow_Left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow_Left.png; sourceTree = "<group>"; };
 		36BA30481C920A6F005939C5 /* List_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = List_White.png; sourceTree = "<group>"; };
 		36BA30491C920A6F005939C5 /* wiw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wiw.png; sourceTree = "<group>"; };
@@ -144,23 +91,8 @@
 		36BA304B1C920A6F005939C5 /* HC_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HC_Tab.png; sourceTree = "<group>"; };
 		36BA304C1C920A6F005939C5 /* Left_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Left_Tab.png; sourceTree = "<group>"; };
 		36BA304D1C920A6F005939C5 /* Location_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location_Tab.png; sourceTree = "<group>"; };
-		36BA304E1C920A6F005939C5 /* Winery_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Winery_Tab.png; sourceTree = "<group>"; };
-		36BA304F1C920A6F005939C5 /* Music_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Music_Tab.png; sourceTree = "<group>"; };
-		36BA30501C920A6F005939C5 /* Food_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Food_Tab.png; sourceTree = "<group>"; };
-		36BA30511C920A6F005939C5 /* Sponsors_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sponsors_Tab.png; sourceTree = "<group>"; };
-		36BA30521C920A6F005939C5 /* Other_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Other_Tab.png; sourceTree = "<group>"; };
-		36BA30531C920A6F005939C5 /* Crafter_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crafter_Tab.png; sourceTree = "<group>"; };
 		36BA30541C920A6F005939C5 /* Map_Tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Map_Tab.png; sourceTree = "<group>"; };
-		36BA30551C920A6F005939C5 /* Music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Music.png; sourceTree = "<group>"; };
-		36BA30561C920A6F005939C5 /* Sponsors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sponsors.png; sourceTree = "<group>"; };
-		36BA30571C920A6F005939C5 /* Crafter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crafter.png; sourceTree = "<group>"; };
-		36BA30581C920A6F005939C5 /* Winery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Winery.png; sourceTree = "<group>"; };
-		36BA30591C920A6F005939C5 /* Direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Direction.png; sourceTree = "<group>"; };
-		36BA305A1C920A6F005939C5 /* Food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Food.png; sourceTree = "<group>"; };
-		36BA305B1C920A6F005939C5 /* Other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Other.png; sourceTree = "<group>"; };
-		36BA305C1C920A6F005939C5 /* 715-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "715-globe.png"; sourceTree = "<group>"; };
 		36BA305D1C920A6F005939C5 /* 852-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "852-map.png"; sourceTree = "<group>"; };
-		36BA305E1C920A6F005939C5 /* 881-globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "881-globe.png"; sourceTree = "<group>"; };
 		36FE4E1A1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "2016 Howard County 8666 V3.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,48 +110,15 @@
 		3612C5E41C95F57B0062379F /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				3612C60A1C95F5F00062379F /* Sponsor.png */,
 				3612C5E51C95F5960062379F /* Event Merchandise.png */,
-				3612C5E61C95F5960062379F /* ATM 2.png */,
-				3612C5E71C95F5960062379F /* ATM 1.png */,
+				3612C5E61C95F5960062379F /* ATM.png */,
 				3612C5E81C95F5960062379F /* Food Vendors.png */,
-				3612C5E91C95F5960062379F /* Capital Style.png */,
-				3612C5EA1C95F5960062379F /* Children's Games.png */,
-				3612C5EB1C95F5960062379F /* Childrens Stage.png */,
-				3612C5EC1C95F5960062379F /* Spot-o-Pots 1.png */,
-				3612C5ED1C95F5960062379F /* First Aid 1.png */,
-				3612C5EE1C95F5960062379F /* Spot-o-Pots 2.png */,
-				3612C5EF1C95F5960062379F /* First Aid 2.png */,
+				3612C5E91C95F5960062379F /* Main Stage.png */,
+				3612C5EE1C95F5960062379F /* Spot-o-Pots.png */,
+				3612C5EF1C95F5960062379F /* First Aid.png */,
 			);
 			name = Others;
-			sourceTree = "<group>";
-		};
-		3612C5FB1C95F5AC0062379F /* Restaurants */ = {
-			isa = PBXGroup;
-			children = (
-				3612C5FC1C95F5C40062379F /* A & B Soft Ice Cream.png */,
-				3612C5FD1C95F5C40062379F /* Old Fashioned Kettle Korn.png */,
-				3612C5FE1C95F5C40062379F /* Convenience Catering.png */,
-				3612C5FF1C95F5C40062379F /* Hoffmans PA Dutch Funnel Cakes.png */,
-				3612C6001C95F5C40062379F /* Salernos Restaurant & Catering.png */,
-				3612C6011C95F5C40062379F /* Serra Brothers Italian Deli.png */,
-			);
-			name = Restaurants;
-			sourceTree = "<group>";
-		};
-		3612C6081C95F5D60062379F /* Sponsors */ = {
-			isa = PBXGroup;
-			children = (
-				3612C6091C95F5F00062379F /* Apple Ford Lincoln.png */,
-				3612C60A1C95F5F00062379F /* Sponsor.png */,
-				3612C60B1C95F5F00062379F /* Columbia Association.png */,
-				3612C60C1C95F5F00062379F /* Economic Development Authority.png */,
-				3612C60D1C95F5F00062379F /* Edys.png */,
-				3612C60E1C95F5F00062379F /* Shannon-Baum.png */,
-				3612C60F1C95F5F00062379F /* Pump It Up.png */,
-				3612C6191C95F7D40062379F /* Information.png */,
-				3612C6101C95F5F00062379F /* Tourism & Promotion.png */,
-			);
-			name = Sponsors;
 			sourceTree = "<group>";
 		};
 		36BA300A1C91E1EC005939C5 = {
@@ -241,7 +140,7 @@
 		36BA30151C91E1EC005939C5 /* July4th */ = {
 			isa = PBXGroup;
 			children = (
-				36601CC41C94E69F00F142FC /* July4thTiles */,
+				3604C26B1D0EF2380030C8C1 /* July4thTiles */,
 				36BA30431C9209B3005939C5 /* SupportingFiles */,
 				36BA30161C91E1EC005939C5 /* AppDelegate.swift */,
 				36BA30181C91E1EC005939C5 /* ViewController.swift */,
@@ -252,6 +151,7 @@
 				36BA303E1C920964005939C5 /* MapPin.swift */,
 				36BA301F1C91E1EC005939C5 /* LaunchScreen.storyboard */,
 				36BA30221C91E1EC005939C5 /* Info.plist */,
+				36769D541D118F0500CD0BB2 /* Data.json */,
 			);
 			path = July4th;
 			sourceTree = "<group>";
@@ -259,14 +159,11 @@
 		36BA30431C9209B3005939C5 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				3612C6081C95F5D60062379F /* Sponsors */,
-				3612C5FB1C95F5AC0062379F /* Restaurants */,
 				3612C5E41C95F57B0062379F /* Others */,
 				36203B8A1C92FF75002AD265 /* 4thjuly.jpg */,
 				36BA30281C91FE83005939C5 /* tspark.png */,
 				36BA30441C920A6F005939C5 /* Uncheckbox.png */,
 				36BA30451C920A6F005939C5 /* 750-home.png */,
-				36BA30461C920A6F005939C5 /* 735-phone.png */,
 				36BA30471C920A6F005939C5 /* Arrow_Left.png */,
 				36BA30481C920A6F005939C5 /* List_White.png */,
 				36BA30491C920A6F005939C5 /* wiw.png */,
@@ -276,23 +173,8 @@
 				36203B8E1C93052E002AD265 /* Howard County 8865 2015 v3.mp3 */,
 				36FE4E1A1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 */,
 				36BA304D1C920A6F005939C5 /* Location_Tab.png */,
-				36BA304E1C920A6F005939C5 /* Winery_Tab.png */,
-				36BA304F1C920A6F005939C5 /* Music_Tab.png */,
-				36BA30501C920A6F005939C5 /* Food_Tab.png */,
-				36BA30511C920A6F005939C5 /* Sponsors_Tab.png */,
-				36BA30521C920A6F005939C5 /* Other_Tab.png */,
-				36BA30531C920A6F005939C5 /* Crafter_Tab.png */,
 				36BA30541C920A6F005939C5 /* Map_Tab.png */,
-				36BA30551C920A6F005939C5 /* Music.png */,
-				36BA30561C920A6F005939C5 /* Sponsors.png */,
-				36BA30571C920A6F005939C5 /* Crafter.png */,
-				36BA30581C920A6F005939C5 /* Winery.png */,
-				36BA30591C920A6F005939C5 /* Direction.png */,
-				36BA305A1C920A6F005939C5 /* Food.png */,
-				36BA305B1C920A6F005939C5 /* Other.png */,
-				36BA305C1C920A6F005939C5 /* 715-globe.png */,
 				36BA305D1C920A6F005939C5 /* 852-map.png */,
-				36BA305E1C920A6F005939C5 /* 881-globe.png */,
 				36BA302A1C9205F5005939C5 /* icon.png */,
 				36BA302B1C9205F5005939C5 /* icon@2x-1.png */,
 				36BA302C1C9205F5005939C5 /* icon@2x.png */,
@@ -365,75 +247,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3612C5FA1C95F5960062379F /* First Aid 2.png in Resources */,
+				3604C26C1D0EF2380030C8C1 /* July4thTiles in Resources */,
+				3612C5FA1C95F5960062379F /* First Aid.png in Resources */,
 				3612C6121C95F5F00062379F /* Sponsor.png in Resources */,
 				36FE4E1B1CDB9EDD00CD49EB /* 2016 Howard County 8666 V3.mp3 in Resources */,
 				361E56201C924A5600D030BC /* digital-7.ttf in Resources */,
 				36BA302F1C9205F5005939C5 /* icon@2x.png in Resources */,
 				36BA303A1C9206BE005939C5 /* 462-pause1.png in Resources */,
-				36BA306D1C920A6F005939C5 /* Other_Tab.png in Resources */,
 				36BA30341C920647005939C5 /* Default.png in Resources */,
 				36BA30651C920A6F005939C5 /* Checkedbox.png in Resources */,
 				3612C5F31C95F5960062379F /* Food Vendors.png in Resources */,
-				3612C5F91C95F5960062379F /* Spot-o-Pots 2.png in Resources */,
+				3612C5F91C95F5960062379F /* Spot-o-Pots.png in Resources */,
 				36203B8B1C92FF75002AD265 /* 4thjuly.jpg in Resources */,
 				36BA30671C920A6F005939C5 /* Left_Tab.png in Resources */,
-				3612C5F11C95F5960062379F /* ATM 2.png in Resources */,
+				3612C5F11C95F5960062379F /* ATM.png in Resources */,
 				36BA30681C920A6F005939C5 /* Location_Tab.png in Resources */,
-				3612C6131C95F5F00062379F /* Columbia Association.png in Resources */,
 				36BA305F1C920A6F005939C5 /* Uncheckbox.png in Resources */,
-				3612C6151C95F5F00062379F /* Edys.png in Resources */,
 				36BA30351C920647005939C5 /* Default@2x.png in Resources */,
 				36BA30601C920A6F005939C5 /* 750-home.png in Resources */,
 				36BA306F1C920A6F005939C5 /* Map_Tab.png in Resources */,
-				36BA30691C920A6F005939C5 /* Winery_Tab.png in Resources */,
 				36BA30211C91E1EC005939C5 /* LaunchScreen.storyboard in Resources */,
-				3612C6021C95F5C40062379F /* A & B Soft Ice Cream.png in Resources */,
+				36769D551D118F0500CD0BB2 /* Data.json in Resources */,
 				36BA30781C920A6F005939C5 /* 852-map.png in Resources */,
-				3612C6031C95F5C40062379F /* Old Fashioned Kettle Korn.png in Resources */,
-				36BA30721C920A6F005939C5 /* Crafter.png in Resources */,
-				36BA30791C920A6F005939C5 /* 881-globe.png in Resources */,
-				3612C6171C95F5F00062379F /* Pump It Up.png in Resources */,
-				3612C6061C95F5C40062379F /* Salernos Restaurant & Catering.png in Resources */,
-				3612C6161C95F5F00062379F /* Shannon-Baum.png in Resources */,
 				36BA30391C9206BE005939C5 /* 461-play1.png in Resources */,
-				36BA30611C920A6F005939C5 /* 735-phone.png in Resources */,
-				36BA30761C920A6F005939C5 /* Other.png in Resources */,
-				3612C5F51C95F5960062379F /* Children's Games.png in Resources */,
-				3612C6071C95F5C40062379F /* Serra Brothers Italian Deli.png in Resources */,
-				36601CC51C94E69F00F142FC /* July4thTiles in Resources */,
-				3612C5F61C95F5960062379F /* Childrens Stage.png in Resources */,
-				3612C5F81C95F5960062379F /* First Aid 1.png in Resources */,
-				3612C6111C95F5F00062379F /* Apple Ford Lincoln.png in Resources */,
-				3612C6181C95F5F00062379F /* Tourism & Promotion.png in Resources */,
-				36BA306B1C920A6F005939C5 /* Food_Tab.png in Resources */,
-				36BA30741C920A6F005939C5 /* Direction.png in Resources */,
 				36BA302D1C9205F5005939C5 /* icon.png in Resources */,
 				36BA30641C920A6F005939C5 /* wiw.png in Resources */,
 				3612C5F01C95F5960062379F /* Event Merchandise.png in Resources */,
-				36BA306E1C920A6F005939C5 /* Crafter_Tab.png in Resources */,
-				3612C6041C95F5C40062379F /* Convenience Catering.png in Resources */,
-				3612C6141C95F5F00062379F /* Economic Development Authority.png in Resources */,
 				36BA30661C920A6F005939C5 /* HC_Tab.png in Resources */,
-				36BA306A1C920A6F005939C5 /* Music_Tab.png in Resources */,
 				36BA301E1C91E1EC005939C5 /* Assets.xcassets in Resources */,
-				3612C6051C95F5C40062379F /* Hoffmans PA Dutch Funnel Cakes.png in Resources */,
-				3612C61A1C95F7D40062379F /* Information.png in Resources */,
 				36203B8F1C93052E002AD265 /* Howard County 8865 2015 v3.mp3 in Resources */,
 				36BA30331C920647005939C5 /* Default-568@2x.png in Resources */,
 				36BA30621C920A6F005939C5 /* Arrow_Left.png in Resources */,
-				36BA30711C920A6F005939C5 /* Sponsors.png in Resources */,
-				3612C5F41C95F5960062379F /* Capital Style.png in Resources */,
-				3612C5F21C95F5960062379F /* ATM 1.png in Resources */,
-				36BA30701C920A6F005939C5 /* Music.png in Resources */,
-				36BA30731C920A6F005939C5 /* Winery.png in Resources */,
-				36BA30751C920A6F005939C5 /* Food.png in Resources */,
-				3612C5F71C95F5960062379F /* Spot-o-Pots 1.png in Resources */,
-				36BA306C1C920A6F005939C5 /* Sponsors_Tab.png in Resources */,
+				3612C5F41C95F5960062379F /* Main Stage.png in Resources */,
 				36BA30631C920A6F005939C5 /* List_White.png in Resources */,
 				36BA30291C91FE83005939C5 /* tspark.png in Resources */,
 				36BA302E1C9205F5005939C5 /* icon@2x-1.png in Resources */,
-				36BA30771C920A6F005939C5 /* 715-globe.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

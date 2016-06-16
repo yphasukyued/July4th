@@ -13,16 +13,13 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
     weak var delegate: HomeModelProtocal!
     var data : NSMutableData = NSMutableData()
     var urlPath: String = ""
-    var dataType: String = ""
     
     func downloadItems(type: String) {
-        
-        dataType = type.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         if type == "Points" {
             urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetPointsList.aspx"
         } else {
-            urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetList.aspx?cat="+dataType
+            urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetList.aspx"
         }
         let url: NSURL = NSURL(string: urlPath)!
         var session: NSURLSession!
@@ -49,7 +46,6 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             print("Data downloaded")
             self.parseJSON()
         }
-        
     }
     
     func parseJSON() {
@@ -71,15 +67,11 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             let location = LocationModel()
             let category = (item["Category"] as? String)!
             let name = (item["Name"] as? String)!
-            let desc = (item["Description"] as? String)!
-            let url = (item["URL"] as? String)!
             let latitude = (item["Y"] as? Double)!
             let longitude = (item["X"] as? Double)!
             
-            location.url = url as String
             location.category = category as String
             location.name = name as String
-            location.desc = desc as String
             location.latitude = latitude as Double
             location.longitude = longitude as Double
             

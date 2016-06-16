@@ -7,10 +7,9 @@ class MapPin : NSObject, MKAnnotation {
     var subtitle: String?
     var pin: String?
     
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, pin: String) {
+    init(coordinate: CLLocationCoordinate2D, title: String, pin: String) {
         self.coordinate = coordinate
         self.title = title
-        self.subtitle = subtitle
         self.pin = pin
     }
 }
