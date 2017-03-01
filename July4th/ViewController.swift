@@ -27,11 +27,11 @@ var destinationTime: NSString = ""
 var locateMeLabel: UILabel = UILabel()
 var appTitle: UILabel = UILabel()
 var finalCountLabel: UILabel = UILabel()
-var timer: NSTimer = NSTimer()
-var timer1: NSTimer = NSTimer()
-var timer2: NSTimer = NSTimer()
-var timer3: NSTimer = NSTimer()
-var timer4: NSTimer = NSTimer()
+var timer: Timer = Timer()
+var timer1: Timer = Timer()
+var timer2: Timer = Timer()
+var timer3: Timer = Timer()
+var timer4: Timer = Timer()
 var seconds: NSInteger = NSInteger()
 var sliderValues: float_t = float_t()
 var introText: UITextView = UITextView()
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var selectedLocation : LocationModel = LocationModel()
     
     var tableView: UITableView = UITableView()
-    var selectedIndexPath : NSIndexPath?
+    var selectedIndexPath : IndexPath?
     var mapView: MKMapView!
     var locationManager = CLLocationManager()
     var webView: UIWebView = UIWebView()
@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.headingFilter = kCLHeadingFilterNone
-        locationManager.activityType = .AutomotiveNavigation
+        locationManager.activityType = .automotiveNavigation
         locationManager.requestWhenInUseAuthorization()
         
         let homeModel = HomeModel()
@@ -74,12 +74,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         view.backgroundColor=UIColor(red: 32/255, green: 32/255, blue: 64/255, alpha: 1)
         
-        mainView=UIView(frame: CGRectMake(0, 85, view.frame.width, view.frame.height-85))
+        mainView=UIView(frame: CGRect(x: 0, y: 85, width: view.frame.width, height: view.frame.height-85))
         mainView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
         view.addSubview(mainView)
         
-        animateView=UIView(frame: CGRectMake(0, 85, view.frame.width, view.frame.height-212))
-        animateView.backgroundColor=UIColor.clearColor()
+        animateView=UIView(frame: CGRect(x: 0, y: 85, width: view.frame.width, height: view.frame.height-212))
+        animateView.backgroundColor=UIColor.clear
         animateView.alpha = 0
         view.addSubview(animateView)
         
@@ -89,32 +89,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if CLLocationManager.locationServicesEnabled() {
         }
         
-        if CLLocationManager.authorizationStatus() == .NotDetermined {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
         
         createScrollLabel()
         
-        menuView = UIView(frame: CGRectMake(-(mainView.frame.width), 0, mainView.frame.width, mainView.frame.height))
+        menuView = UIView(frame: CGRect(x: -(mainView.frame.width), y: 0, width: mainView.frame.width, height: mainView.frame.height))
         menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
         menuView.tag = 1
         mainView.addSubview(menuView)
         
-        tableView = UITableView(frame: CGRectMake(0, 10, mainView.frame.width-20, mainView.frame.height-20), style: UITableViewStyle.Plain)
-        tableView.backgroundColor=UIColor.clearColor()
+        tableView = UITableView(frame: CGRect(x: 0, y: 10, width: mainView.frame.width-20, height: mainView.frame.height-20), style: UITableViewStyle.plain)
+        tableView.backgroundColor=UIColor.clear
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         menuView.addSubview(self.tableView)
         
         createWebAndMapView()
         
-        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
         myActivityIndicator.center = view.center
         myActivityIndicator.startAnimating()
         view.addSubview(myActivityIndicator)
         
-        splashView  = UIImageView(frame:CGRectMake(0, 0, view.frame.width, view.frame.height));
+        splashView  = UIImageView(frame:CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height));
         splashView.image = UIImage(named:"Default.png")
         splashView.alpha = 1
         view.addSubview(splashView)
@@ -124,33 +124,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //# MARK: - Navigation Bar
     func createNavigationBar() {
-        leftBtn = UIButton(type: UIButtonType.System) as UIButton
-        leftBtn.frame = CGRectMake(5, 32, 40, 48)
-        leftBtn.setImage(UIImage(named: "List_White.png"), forState:.Normal)
-        leftBtn.tintColor = UIColor.whiteColor()
-        leftBtn.addTarget(self, action: #selector(ViewController.leftBtnPress), forControlEvents:.TouchUpInside)
+        leftBtn = UIButton(type: UIButtonType.system) as UIButton
+        leftBtn.frame = CGRect(x: 5, y: 32, width: 40, height: 48)
+        leftBtn.setImage(UIImage(named: "List_White.png"), for:UIControlState())
+        leftBtn.tintColor = UIColor.white
+        leftBtn.addTarget(self, action: #selector(ViewController.leftBtnPress), for:.touchUpInside)
         view.addSubview(leftBtn)
         
-        rightBtn = UIButton(type: UIButtonType.System) as UIButton
-        rightBtn.frame = CGRectMake(view.frame.width-45, 30, 28, 28)
-        rightBtn.setImage(UIImage(named: "Map_Tab.png"), forState:.Normal)
-        rightBtn.tintColor = UIColor.whiteColor()
-        rightBtn.addTarget(self, action: #selector(ViewController.rightBtnPress), forControlEvents:.TouchUpInside)
+        rightBtn = UIButton(type: UIButtonType.system) as UIButton
+        rightBtn.frame = CGRect(x: view.frame.width-45, y: 30, width: 28, height: 28)
+        rightBtn.setImage(UIImage(named: "Map_Tab.png"), for:UIControlState())
+        rightBtn.tintColor = UIColor.white
+        rightBtn.addTarget(self, action: #selector(ViewController.rightBtnPress), for:.touchUpInside)
         view.addSubview(rightBtn)
         
-        homeBtn = UIButton(type: UIButtonType.System) as UIButton
-        homeBtn.frame = CGRectMake(15, 30, 24, 24)
-        homeBtn.setImage(UIImage(named: "750-home.png"), forState:.Normal)
-        homeBtn.tintColor = UIColor.whiteColor()
-        homeBtn.hidden = true
-        homeBtn.addTarget(self, action: #selector(ViewController.homePress), forControlEvents:.TouchUpInside)
+        homeBtn = UIButton(type: UIButtonType.system) as UIButton
+        homeBtn.frame = CGRect(x: 15, y: 30, width: 24, height: 24)
+        homeBtn.setImage(UIImage(named: "750-home.png"), for:UIControlState())
+        homeBtn.tintColor = UIColor.white
+        homeBtn.isHidden = true
+        homeBtn.addTarget(self, action: #selector(ViewController.homePress), for:.touchUpInside)
         view.addSubview(homeBtn)
         
-        appTitle = UILabel(frame: CGRectMake(10, 30, view.frame.width-20, 24))
+        appTitle = UILabel(frame: CGRect(x: 10, y: 30, width: view.frame.width-20, height: 24))
         appTitle.text = "July 4th"
-        appTitle.textColor=UIColor.whiteColor()
+        appTitle.textColor=UIColor.white
         appTitle.font = UIFont(name: "TrebuchetMS-Bold", size: 18)
-        appTitle.textAlignment = NSTextAlignment.Center
+        appTitle.textAlignment = NSTextAlignment.center
         view.addSubview(appTitle)
         
         //createTabBar()
@@ -161,20 +161,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
         mapDisplay = "Off"
-        leftBtn.hidden = false
-        homeBtn.hidden = true
-        UIView.animateWithDuration(1, animations:  {() in
-            rightBtn.tintColor = UIColor.whiteColor()
-            menuView.frame = CGRectMake(-(mainView.frame.width), 0, menuView.frame.width, menuView.frame.height)
-            self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-            mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
+        leftBtn.isHidden = false
+        homeBtn.isHidden = true
+        UIView.animate(withDuration: 1, animations:  {() in
+            rightBtn.tintColor = UIColor.white
+            menuView.frame = CGRect(x: -(mainView.frame.width), y: 0, width: menuView.frame.width, height: menuView.frame.height)
+            self.webView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+            mainMapView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
             }, completion:{(Bool)  in
         })
         getMessage()
         var bounds: CGRect = scrollLabel.bounds
         let originalString: String = scrollLabel.text!
         let myString: NSString = originalString as NSString
-        bounds.size = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14.0)])
+        bounds.size = myString.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0)])
         scrollLabel.bounds = bounds;
     }
     func leftBtnPress() {
@@ -186,46 +186,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mapDisplay = "Off"
         dataSource = "Others"
         myActivityIndicator.startAnimating()
-        rightBtn.tintColor = UIColor.whiteColor()
-        leftBtn.hidden = true
-        homeBtn.hidden = false
+        rightBtn.tintColor = UIColor.white
+        leftBtn.isHidden = true
+        homeBtn.isHidden = false
         if menuDisplay == "On" {
-            UIView.animateWithDuration(1, animations:  {() in
+            UIView.animate(withDuration: 1, animations:  {() in
                 menuView.alpha = 0
-                menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
-                self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
+                menuView.frame = CGRect(x: -(mainView.frame.width), y: 0, width: mainView.frame.width-60, height: mainView.frame.height)
+                self.webView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                mainMapView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
                 }, completion:{(Bool)  in
                     let homeModel = HomeModel()
                     homeModel.delegate = self
                     homeModel.downloadItems("Others")
                     
                     menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
-                    menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width, mainView.frame.height)
-                    UIView.animateWithDuration(1.0, animations: {() in
+                    menuView.frame = CGRect(x: -(mainView.frame.width), y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                    UIView.animate(withDuration: 1.0, animations: {() in
                         menuView.alpha = 1
-                        leftBtn.tintColor = UIColor.whiteColor()
-                        menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-                        self.tableView.frame = CGRectMake(0, 10, menuView.frame.width-20, menuView.frame.height-20)
+                        leftBtn.tintColor = UIColor.white
+                        menuView.frame = CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                        self.tableView.frame = CGRect(x: 0, y: 10, width: menuView.frame.width-20, height: menuView.frame.height-20)
                         }, completion:{(Bool) in
                             menuDisplay = "Off"
                     })
             })
         } else if menuDisplay == "Off" {
-            UIView.animateWithDuration(1, animations:  {() in
+            UIView.animate(withDuration: 1, animations:  {() in
                 let homeModel = HomeModel()
                 homeModel.delegate = self
                 homeModel.downloadItems("Others")
                 menuView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
-                menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-                self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
+                menuView.frame = CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                self.webView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                mainMapView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
                 }, completion:{(Bool)  in
-                    UIView.animateWithDuration(1.0, animations: {() in
+                    UIView.animate(withDuration: 1.0, animations: {() in
                         menuView.alpha = 1
-                        leftBtn.tintColor = UIColor.whiteColor()
-                        menuView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
-                        self.tableView.frame = CGRectMake(0, 10, menuView.frame.width-20, menuView.frame.height-20)
+                        leftBtn.tintColor = UIColor.white
+                        menuView.frame = CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                        self.tableView.frame = CGRect(x: 0, y: 10, width: menuView.frame.width-20, height: menuView.frame.height-20)
                         }, completion:{(Bool) in
                             menuDisplay = "Off"
                     })
@@ -237,48 +237,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         appTitle.text = "July 4th"
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
-        leftBtn.tintColor = UIColor.whiteColor()
+        leftBtn.tintColor = UIColor.white
         if mapDisplay == "Off" {
             mapDisplay = "On"
             menuDisplay = "Off"
             rightBtn.tintColor = UIColor(red: 255/255, green: 0/255, blue: 128/255, alpha: 1)
-            UIView.animateWithDuration(1.0, animations: {
-                leftBtn.hidden = true
-                homeBtn.hidden = false
-                menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
-                self.webView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
-                mainMapView.frame = CGRectMake(0, 0, mainView.frame.width, mainView.frame.height)
+            UIView.animate(withDuration: 1.0, animations: {
+                leftBtn.isHidden = true
+                homeBtn.isHidden = false
+                menuView.frame = CGRect(x: -(mainView.frame.width), y: 0, width: mainView.frame.width-60, height: mainView.frame.height)
+                self.webView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
+                mainMapView.frame = CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height)
                 
             })
         } else if mapDisplay == "On" {
             mapDisplay = "Off"
-            rightBtn.tintColor = UIColor.whiteColor()
-            UIView.animateWithDuration(1.0, animations: {
-                leftBtn.hidden = false
-                homeBtn.hidden = true
-                mainMapView.frame = CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height)
+            rightBtn.tintColor = UIColor.white
+            UIView.animate(withDuration: 1.0, animations: {
+                leftBtn.isHidden = false
+                homeBtn.isHidden = true
+                mainMapView.frame = CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height)
             })
         }
     }
     func closeSlide() {
-        leftBtn.tintColor = UIColor.whiteColor()
+        leftBtn.tintColor = UIColor.white
         menuDisplay = "Off"
-        UIView.animateWithDuration(1.0, animations: {
-            menuView.frame = CGRectMake(-(mainView.frame.width), 0, mainView.frame.width-60, mainView.frame.height)
+        UIView.animate(withDuration: 1.0, animations: {
+            menuView.frame = CGRect(x: -(mainView.frame.width), y: 0, width: mainView.frame.width-60, height: mainView.frame.height)
         })
     }
     //# MARK: - Table View
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dataSource == "Slide" {
             return menus.count
         } else {
             return feedItems.count
         }
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if dataSource == "Slide" {
             return 35
         } else {
@@ -289,20 +289,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = MyTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "myIdentifier")
-        let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-        cell.myButton1.frame = CGRectMake(15, 8, 30, 30)
-        cell.myButton1.setImage(UIImage(named: (item.category! as String)+".png"), forState: UIControlState.Normal)
-        cell.myLabel1.frame = CGRectMake(55, 10, tableView.frame.width-50, 24)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = MyTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "myIdentifier")
+        let item: LocationModel = feedItems[(indexPath as NSIndexPath).row] as! LocationModel
+        cell.myButton1.frame = CGRect(x: 15, y: 8, width: 30, height: 30)
+        cell.myButton1.setImage(UIImage(named: (item.category! as String)+".png"), for: UIControlState())
+        cell.myLabel1.frame = CGRect(x: 55, y: 10, width: tableView.frame.width-50, height: 24)
         cell.myLabel1.text = item.name
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.clear
         
         return cell
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let item: LocationModel = feedItems[indexPath.row] as! LocationModel
+        let item: LocationModel = feedItems[(indexPath as NSIndexPath).row] as! LocationModel
         
         let center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: item.latitude!, longitude: item.longitude!)
         mapView.centerCoordinate = center
@@ -319,13 +319,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         rightBtnPress()
 
     }
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as! MyTableViewCell).watchFrameChanges()
     }
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as! MyTableViewCell).ignoreFrameChanges()
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         for cell in tableView.visibleCells as! [MyTableViewCell] {
             cell.ignoreFrameChanges()
@@ -335,7 +335,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func openMap() {
         locationManager.stopUpdatingLocation()
         locationManager.stopUpdatingHeading()
-        let item: LocationModel = feedItems[selectedIndexPath!.row] as! LocationModel
+        let item: LocationModel = feedItems[(selectedIndexPath! as NSIndexPath).row] as! LocationModel
         
         let center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: item.latitude!, longitude: item.longitude!)
         mapView.centerCoordinate = center
@@ -352,13 +352,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         rightBtnPress()
     }
     func getMessage() {
-        let url: NSURL = NSURL(string: "https://gis.howardcountymd.gov/iOS/July4th/GetScrollMessage.aspx")!
-        let data: NSData = NSData(contentsOfURL: url)!
+        let url: URL = URL(string: "https://gis.howardcountymd.gov/iOS/July4th/GetScrollMessage.aspx")!
+        let data: Data = try! Data(contentsOf: url)
         
         var jsonResult: NSMutableArray = NSMutableArray()
         
         do {
-            jsonResult = try NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.AllowFragments) as! NSMutableArray
+            jsonResult = try JSONSerialization.jsonObject(with: data, options:JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableArray
             var jsonElement: NSDictionary = NSDictionary()
             
             jsonElement = jsonResult[0] as! NSDictionary
@@ -371,12 +371,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //# MARK: - Scroll Label
     func createScrollLabel() {
-        scrollLabel = UILabel(frame: CGRectMake(0, 60, self.view.frame.size.width, 22))
+        scrollLabel = UILabel(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: 22))
         scrollLabel.text = ""
-        scrollLabel.textColor=UIColor.whiteColor()
+        scrollLabel.textColor=UIColor.white
         scrollLabel.backgroundColor=UIColor(red: 32/255, green: 32/255, blue: 64/255, alpha: 1)
         scrollLabel.font = UIFont(name: "TrebuchetMS", size: 14)
-        scrollLabel.textAlignment = NSTextAlignment.Center
+        scrollLabel.textAlignment = NSTextAlignment.center
         scrollLabel.alpha = 1
         self.view.addSubview(scrollLabel)
         
@@ -385,20 +385,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var bounds: CGRect = scrollLabel.bounds
         let originalString: String = scrollLabel.text!
         let myString: NSString = originalString as NSString
-        bounds.size = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(14.0)])
+        bounds.size = myString.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0)])
         scrollLabel.bounds = bounds;
         
     }
     func timeScroll() {
-        scrollLabel.center = CGPointMake(scrollLabel.center.x-2, scrollLabel.center.y);
+        scrollLabel.center = CGPoint(x: scrollLabel.center.x-2, y: scrollLabel.center.y);
         if (scrollLabel.center.x < -(scrollLabel.bounds.size.width/2)) {
-            scrollLabel.center = CGPointMake(self.view.frame.size.width + (scrollLabel.bounds.size.width/2), scrollLabel.center.y);
+            scrollLabel.center = CGPoint(x: self.view.frame.size.width + (scrollLabel.bounds.size.width/2), y: scrollLabel.center.y);
         }
     }
     //# MARK: - Agreement
     func checkAgree() {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let agreeItem = prefs.stringForKey("Agreement")
+        let prefs = UserDefaults.standard
+        let agreeItem = prefs.string(forKey: "Agreement")
         if agreeItem == "Yes" {
             closeDisclaimer()
         } else if agreeItem == "No" {
@@ -408,47 +408,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     func createIntroduction() {
-        introImageView  = UIImageView(frame:CGRectMake(0, 0, mainView.frame.width, 80));
+        introImageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: mainView.frame.width, height: 80));
         introImageView.image = UIImage(named:"4thjuly.jpg")
         introImageView.alpha = 1
         mainView.addSubview(introImageView)
         
-        introText = UITextView(frame: CGRectMake(10, 90, mainView.frame.width-20, mainView.frame.height-140))
+        introText = UITextView(frame: CGRect(x: 10, y: 90, width: mainView.frame.width-20, height: mainView.frame.height-140))
         introText.text = "\nDate: Monday, July 4, 2016, 5-10 PM\nFireworks at Dusk\nRain date: Tuesday, July 5 (Fireworks Only)\nInclement weather line: 410-313-4451\n\nCounty Executive Allan H. Kittleman Invites You to the Columbia Lakefront for an Evening of Family Fun and Fireworks!\n\nNote: Those wishing to place a blanket or sheet may do so beginning at 8 AM on July 4. Those wishing to place a tarp on the grass may do so beginning at 3 PM. Placement of tarps must wait until 3 PM in order to protect the grass. For more information on your tarp, contact the Columbia Association at 410-312-6330. No boats are permitted on the lake July 3-5. We encourage all attendees to arrive early to avoid traffic congestion.\n\nLittle Patuxent Parkway will be closed at approximately 6:30-7:30 PM and is not to be reopened until the conclusion of the fireworks."
-        introText.textColor=UIColor.whiteColor()
+        introText.textColor=UIColor.white
         introText.font = UIFont(name: "TrebuchetMS", size: 14)
-        introText.backgroundColor=UIColor.clearColor()
+        introText.backgroundColor=UIColor.clear
         introText.alpha = 0
-        introText.dataDetectorTypes = UIDataDetectorTypes.All
-        introText.tintColor = UIColor.cyanColor()
-        introText.selectable = true
-        introText.editable = false
+        introText.dataDetectorTypes = UIDataDetectorTypes.all
+        introText.tintColor = UIColor.cyan
+        introText.isSelectable = true
+        introText.isEditable = false
         mainView.addSubview(introText)
         
-        finalCountLabel = UILabel(frame: CGRectMake(0, (animateView.frame.size.height/2), animateView.frame.width, 200))
+        finalCountLabel = UILabel(frame: CGRect(x: 0, y: (animateView.frame.size.height/2), width: animateView.frame.width, height: 200))
         finalCountLabel.text = "130"
-        finalCountLabel.textColor=UIColor.greenColor()
+        finalCountLabel.textColor=UIColor.green
         finalCountLabel.font = UIFont(name: "digital-7", size: 200)
-        finalCountLabel.textAlignment = NSTextAlignment.Center
-        finalCountLabel.hidden = true
+        finalCountLabel.textAlignment = NSTextAlignment.center
+        finalCountLabel.isHidden = true
         self.view.addSubview(finalCountLabel)
         
-        slider = UISlider(frame:CGRectMake(20, mainView.frame.height-70, mainView.frame.width-40, 20))
+        slider = UISlider(frame:CGRect(x: 20, y: mainView.frame.height-70, width: mainView.frame.width-40, height: 20))
         slider.minimumValue = 0
         slider.maximumValue = 1280
-        slider.continuous = false
-        slider.tintColor = UIColor.redColor()
+        slider.isContinuous = false
+        slider.tintColor = UIColor.red
         slider.value = 0
-        slider.hidden = true
-        slider.enabled = false
+        slider.isHidden = true
+        slider.isEnabled = false
         mainView.addSubview(slider)
         
-        playBtn = UIButton(type: UIButtonType.System) as UIButton
-        playBtn.frame = CGRectMake((mainView.frame.width/2)-14, mainView.frame.height-40, 28, 28)
-        playBtn.setImage(UIImage(named: "461-play1.png"), forState:.Normal)
-        playBtn.tintColor = UIColor.whiteColor()
-        playBtn.hidden = false
-        playBtn.addTarget(self, action: #selector(ViewController.playPress), forControlEvents:.TouchUpInside)
+        playBtn = UIButton(type: UIButtonType.system) as UIButton
+        playBtn.frame = CGRect(x: (mainView.frame.width/2)-14, y: mainView.frame.height-40, width: 28, height: 28)
+        playBtn.setImage(UIImage(named: "461-play1.png"), for:UIControlState())
+        playBtn.tintColor = UIColor.white
+        playBtn.isHidden = false
+        playBtn.addTarget(self, action: #selector(ViewController.playPress), for:.touchUpInside)
         mainView.addSubview(playBtn)
     }
     func playPress() {
@@ -460,37 +460,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func startCountDown() {
         fireworkDisplay = "On"
-        UIView.animateWithDuration(1.0, animations: {() in
+        UIView.animate(withDuration: 1.0, animations: {() in
             introImageView.alpha = 0
             introText.alpha = 0
-            playBtn.setImage(UIImage(named: "462-pause1.png"), forState:.Normal)
-            mainView.backgroundColor=UIColor.blackColor()
+            playBtn.setImage(UIImage(named: "462-pause1.png"), for:UIControlState())
+            mainView.backgroundColor=UIColor.black
             animateView.alpha = 1
             }, completion:{(Bool) in
-                finalCountLabel.hidden = true
+                finalCountLabel.isHidden = true
                 finalCountLabel.text = "130"
                 slider.value = 0
-                slider.hidden = false
+                slider.isHidden = false
                 sliderValues = 0
                 seconds = 130
-                timer2 = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(ViewController.countDownTime), userInfo: nil, repeats: false)
+                timer2 = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(ViewController.countDownTime), userInfo: nil, repeats: false)
                 self.startAudio()
         })
     }
     func stopCountDown() {
         fireworkDisplay = "Off"
-        UIView.animateWithDuration(1.0, animations: {() in
+        UIView.animate(withDuration: 1.0, animations: {() in
             introImageView.alpha = 1
             introText.alpha = 1
-            playBtn.setImage(UIImage(named: "461-play1.png"), forState:.Normal)
+            playBtn.setImage(UIImage(named: "461-play1.png"), for:UIControlState())
             mainView.backgroundColor=UIColor(red: 32/255, green: 64/255, blue: 128/255, alpha: 1)
             animateView.alpha = 0
             }, completion:{(Bool) in
                 timer2.invalidate()
                 timer3.invalidate()
                 timer4.invalidate()
-                slider.hidden = true
-                finalCountLabel.hidden = true
+                slider.isHidden = true
+                finalCountLabel.isHidden = true
                 if musicPlay {
                     self.audioPlayer.stop()
                     musicPlay = false
@@ -499,9 +499,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     func startAudio() {
-        let julySound = NSBundle.mainBundle().pathForResource("2016 Howard County 8666 V3", ofType: "mp3")
+        let julySound = Bundle.main.path(forResource: "2016 Howard County 8666 V3", ofType: "mp3")
         do{
-            audioPlayer = try AVAudioPlayer(contentsOfURL:NSURL(fileURLWithPath: julySound!), fileTypeHint: nil)
+            audioPlayer = try AVAudioPlayer(contentsOf:URL(fileURLWithPath: julySound!), fileTypeHint: nil)
             audioPlayer.prepareToPlay()
             audioPlayer.play()
             musicPlay = true
@@ -513,7 +513,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //timer3 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.subtractTime), userInfo: nil, repeats: true)
         awakeFromNib()
         sliderValues = 0
-        timer4 = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.playSlider), userInfo: nil, repeats: true)
+        timer4 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.playSlider), userInfo: nil, repeats: true)
     }
     func playSlider() {
         sliderValues=sliderValues+1
@@ -527,96 +527,96 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         finalCountLabel.text = "\(seconds)"
         if seconds == 0 {
             timer3.invalidate()
-            finalCountLabel.hidden = true
+            finalCountLabel.isHidden = true
             finalCountLabel.text = "130"
             awakeFromNib()
         }
     }
     func createDisclaimer() {
-        disclaimerView=UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-        disclaimerView.backgroundColor=UIColor.grayColor()
+        disclaimerView=UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        disclaimerView.backgroundColor=UIColor.gray
         self.view.addSubview(disclaimerView)
         
-        let disclaimerLabel = UILabel(frame: CGRectMake(10, 30, disclaimerView.frame.width-20, 24))
+        let disclaimerLabel = UILabel(frame: CGRect(x: 10, y: 30, width: disclaimerView.frame.width-20, height: 24))
         disclaimerLabel.text = "Terms and Conditions"
-        disclaimerLabel.textColor=UIColor.whiteColor()
+        disclaimerLabel.textColor=UIColor.white
         disclaimerLabel.font = UIFont(name: "TrebuchetMS-Bold", size: 18)
-        disclaimerLabel.textAlignment = NSTextAlignment.Center
+        disclaimerLabel.textAlignment = NSTextAlignment.center
         disclaimerView.addSubview(disclaimerLabel)
         
-        disclaimerText = UITextView(frame: CGRectMake(10, 60, disclaimerView.frame.width-20, disclaimerView.frame.height-172))
+        disclaimerText = UITextView(frame: CGRect(x: 10, y: 60, width: disclaimerView.frame.width-20, height: disclaimerView.frame.height-172))
         disclaimerText.text = "Your access to and use of the Howard County Government website (the 'Site') is subject to the following terms and conditions, as well as all applicable laws. Your access to the Site is in consideration for your agreement to these Terms and Conditions of Use, whether or not you are a registered user. By accessing, browsing, and using the Site, you accept, without limitation or qualification, these Terms and Conditions of Use.\n\nThere are sections of the Howard County Government website that connect you to other sites outside of the control of the Howard County Government. These terms and conditions apply only to those areas that are registered under the Howard County Government name and its agencies. Refer to the Terms of Use for those sites outside of the Howard County Government control.\n\nModification of the Agreement\n\nHoward County Government maintains the right to modify these Terms and Conditions of Use and may do so by posting notice of such modifications on this page. Any modification is effective immediately upon posting the modification unless otherwise stated. Your continued use of the Site following the posting of any modification signifies your acceptance of such modification. You should periodically visit this page to review the current Terms and Conditions of Use.\n\nConduct\n\nYou agree to access and use the Site only for lawful purposes. You are solely responsible for the knowledge of and adherence to any and all laws, statutes, rules and regulations pertaining to your use of the Site. By accessing the Site, you agree that you will not:\n\nUse the Site to commit a criminal offense or to encourage others to conduct that which would constitute a criminal offense or give rise to a civil liability;\nPost or transmit any unlawful, threatening, libelous, harassing, defamatory, vulgar, obscene, pornographic, profane, or otherwise objectionable content;\nUse the Site to impersonate other parties or entities;\nUse the Site to upload any content that contains a software virus, 'Trojan Horse' or any other computer code, files, or programs that may alter, damage, or interrupt the functionality of the Site or the hardware or software of any other person who accesses the Site;\nUpload, post, email, or otherwise transmit any materials that you do not have a right to transmit under any law or under a contractual relationship;\nAlter, damage, or delete any content posted on the site;\nDisrupt the normal flow of communication in any way;\nClaim a relationship with or speak for any business, association, or other organization for which you are not authorized to claim such a relationship;\nPost or transmit any unsolicited advertising, promotional materials, or other forms of solicitation;\nPost any material that infringes or violates the intellectual property rights of another; or\nCollect or store personal information about others.\n\nTermination of Use\n\nHoward County Government may, in its sole discretion, terminate or suspend your access and use of this Site without notice and for any reason, including for violation of these Terms and Conditions of Use or for other conduct which the Howard County Government, in its sole discretion, believes is unlawful or harmful to others. In the event of termination, you are no longer authorized to access the Site, and the Howard County Government will use whatever means possible to enforce this termination.\n\nOther Site Links\n\nSome links on the Site lead to websites that are not operated by the Howard County Government. The Howard County Government does not control these websites nor do we review or control their content. The Howard County Government provides these links to users for convenience. These links are not an endorsement of products, services, or information, and do not imply an association between the Howard County Government and the operators of the linked website.\n\nPolicy on Spamming\n\nYou specifically agree that you will not utilize email addresses obtained through using the Howard County Government's website to transmit the same or substantially similar unsolicited message to 10 or more recipients in a single day, nor 20 or more emails in a single week (consecutive 7-day period), unless it is required for legitimate business purposes. The Howard County Government, in its sole and exclusive discretion, will determine violations of the limitations on email usage set forth in these Terms and Conditions of Use.\n\nContent\n\nThe Howard County Government has the right to monitor the content that you provide, but shall not be obligated to do so. Although the Howard County Government cannot monitor all postings on the Site, we reserve the right (but assume no obligation) to delete, move, or edit any postings that come to our attention that we consider unacceptable or inappropriate, whether for legal or other reasons. United States and foreign copyright laws and international conventions protect the contents of the Site. You agree to abide by all copyright notices.\n\nIndemnity\n\nYou agree to defend, indemnify, and hold harmless the Howard County Government and its employees from any and all liabilities and costs incurred by Indemnified Parties in connection with any claim arising from any breach by you of these Terms and Conditions of Use, including reasonable attorneys' fees and costs. You agree to cooperate as fully as may be reasonably possible in the defense of any such claim. The Howard County Government reserves the right to assume, at its own expense, the exclusive defense and control of any matter otherwise subject to indemnification by you. You in turn shall not settle any matter without the written consent of the Howard County Government.\n\nDisclaimer of Warranty\n\nYou expressly understand and agree that your use of the Site, or any material available through this Site, is at your own risk. Neither the Howard County Government nor its employees warrant that the Site will be uninterrupted, problem-free, free of omissions, or error-free; nor do they make any warranty as to the results that may be obtained from the use of the Site. The content and function of the Site are provided to you 'as is,' without warranties of any kind, either express or implied, including, but not limited to, warranties of title, merchantability, fitness for a particular purpose or use, or 'currentness.'\n\nLimitation of Liability\n\nIn no event will the Howard County Government or its employees be liable for any incidental, indirect, special, punitive, exemplary, or consequential damages, arising out of your use of or inability to use the Site, including without limitation, loss of revenue or anticipated profits, loss of goodwill, loss of business, loss of data, computer failure or malfunction, or any and all other damages."
-        disclaimerText.textColor=UIColor.whiteColor()
+        disclaimerText.textColor=UIColor.white
         disclaimerText.font = UIFont(name: "TrebuchetMS", size: 12)
-        disclaimerText.backgroundColor=UIColor.darkGrayColor()
+        disclaimerText.backgroundColor=UIColor.darkGray
         disclaimerText.alpha = 1
-        disclaimerText.selectable = false
-        disclaimerText.editable = false
+        disclaimerText.isSelectable = false
+        disclaimerText.isEditable = false
         disclaimerView.addSubview(disclaimerText)
         
-        checkBtn = UIButton(type: UIButtonType.System) as UIButton
-        checkBtn.frame = CGRectMake(10, disclaimerView.frame.size.height-90, 32, 32)
-        checkBtn.setImage(UIImage(named: "Uncheckbox.png"), forState:.Normal)
-        checkBtn.addTarget(self, action: #selector(ViewController.btnTouched), forControlEvents:.TouchUpInside)
+        checkBtn = UIButton(type: UIButtonType.system) as UIButton
+        checkBtn.frame = CGRect(x: 10, y: disclaimerView.frame.size.height-90, width: 32, height: 32)
+        checkBtn.setImage(UIImage(named: "Uncheckbox.png"), for:UIControlState())
+        checkBtn.addTarget(self, action: #selector(ViewController.btnTouched), for:.touchUpInside)
         disclaimerView.addSubview(checkBtn)
         
-        let agreeLabel = UILabel(frame: CGRectMake(52, disclaimerView.frame.size.height-85, 100, 24))
+        let agreeLabel = UILabel(frame: CGRect(x: 52, y: disclaimerView.frame.size.height-85, width: 100, height: 24))
         agreeLabel.text = "I agree"
-        agreeLabel.textColor=UIColor.whiteColor()
+        agreeLabel.textColor=UIColor.white
         agreeLabel.font = UIFont(name: "TrebuchetMS-Bold", size: 18)
-        agreeLabel.textAlignment = NSTextAlignment.Left
+        agreeLabel.textAlignment = NSTextAlignment.left
         disclaimerView.addSubview(agreeLabel)
         
-        disclaimerBtn = UIButton(frame: CGRectMake(10, disclaimerView.frame.height-50, disclaimerView.frame.width-20, 40))
-        disclaimerBtn.setTitle("Accept and Continue", forState: .Normal)
-        disclaimerBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        disclaimerBtn = UIButton(frame: CGRect(x: 10, y: disclaimerView.frame.height-50, width: disclaimerView.frame.width-20, height: 40))
+        disclaimerBtn.setTitle("Accept and Continue", for: UIControlState())
+        disclaimerBtn.setTitleColor(UIColor.white, for: UIControlState())
         disclaimerBtn.titleLabel!.font = UIFont(name: "TrebuchetMS", size: 20)
-        disclaimerBtn.addTarget(self, action: #selector(ViewController.closeDisclaimer), forControlEvents: .TouchUpInside)
-        disclaimerBtn.backgroundColor=UIColor.lightGrayColor()
-        disclaimerBtn.hidden = true
+        disclaimerBtn.addTarget(self, action: #selector(ViewController.closeDisclaimer), for: .touchUpInside)
+        disclaimerBtn.backgroundColor=UIColor.lightGray
+        disclaimerBtn.isHidden = true
         disclaimerView.addSubview(disclaimerBtn)
         
         checkAgree()
     }
     func openDisclaimer() {
-        UIView.animateWithDuration(1.0, animations: {
-            disclaimerView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        UIView.animate(withDuration: 1.0, animations: {
+            disclaimerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         })
     }
     func closeDisclaimer() {
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         prefs.setValue("Yes", forKey: "Agreement")
-        UIView.animateWithDuration(1, animations: {
-            disclaimerView.frame = CGRectMake(0, self.view.frame.height, self.view.frame.width, self.view.frame.height)
-            timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: #selector(ViewController.splash), userInfo: nil, repeats: false)
+        UIView.animate(withDuration: 1, animations: {
+            disclaimerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height)
+            timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ViewController.splash), userInfo: nil, repeats: false)
         })
     }
     func splash() {
         timer.invalidate()
-        UIView.animateWithDuration(1.0, animations: {
+        UIView.animate(withDuration: 1.0, animations: {
             introText.alpha = 1
-            splashView.frame = CGRectMake(0, self.view.frame.height, self.view.frame.width, self.view.frame.height)
+            splashView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height)
             myActivityIndicator.stopAnimating()
         })
-        timer1 = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: #selector(ViewController.timeScroll), userInfo: nil, repeats: true)
+        timer1 = Timer.scheduledTimer(timeInterval: 0.06, target: self, selector: #selector(ViewController.timeScroll), userInfo: nil, repeats: true)
     }
     func btnTouched() {
         if check==false {
-            let prefs = NSUserDefaults.standardUserDefaults()
+            let prefs = UserDefaults.standard
             prefs.setValue("No", forKey: "Agreement")
             check=true
-            disclaimerBtn.hidden = true
-            checkBtn.setImage(UIImage(named: "Uncheckbox.png"), forState: .Normal)
+            disclaimerBtn.isHidden = true
+            checkBtn.setImage(UIImage(named: "Uncheckbox.png"), for: UIControlState())
         } else if check==true {
-            let prefs = NSUserDefaults.standardUserDefaults()
+            let prefs = UserDefaults.standard
             prefs.setValue("Yes", forKey: "Agreement")
             check=false
-            disclaimerBtn.hidden = false
-            checkBtn.setImage(UIImage(named: "Checkedbox.png"), forState: .Normal)
+            disclaimerBtn.isHidden = false
+            checkBtn.setImage(UIImage(named: "Checkedbox.png"), for: UIControlState())
         }
     }
     //# MARK: - Update Data
-    func itemsDownloaded(items: NSArray) {
+    func itemsDownloaded(_ items: NSArray) {
         feedItems = items
         if dataSource == "Points" {
             setPin()
@@ -631,7 +631,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         mapView.removeAnnotations( annotationsToRemove )
     }
     func setPin() {
-        for obj : AnyObject in feedItems {
+        for obj : AnyObject in feedItems as [AnyObject] {
             if let item: LocationModel = obj as? LocationModel {
                 let title = item.name
                 let lat = item.latitude
@@ -641,14 +641,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is MapPin) {
             return nil
         }
         
         let reuseId = "pinID"
         
-        var anView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+        var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         if anView == nil {
             anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             anView!.canShowCallout = true
@@ -663,14 +663,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     //# MARK: - TileOverlay
     func addTileOverlay() {
-        let baseURL = NSBundle.mainBundle().bundleURL.absoluteString
-        let urlTemplate = baseURL.stringByAppendingString("/July4thTiles/{z}/{x}/{y}.png/")
-        let overlay = MKTileOverlay(URLTemplate:urlTemplate)
-        overlay.geometryFlipped = true
+        let baseURL = Bundle.main.bundleURL.absoluteString
+        let urlTemplate = baseURL + "/July4thTiles/{z}/{x}/{y}.png/"
+        let overlay = MKTileOverlay(urlTemplate:urlTemplate)
+        overlay.isGeometryFlipped = true
         overlay.canReplaceMapContent = false
-        self.mapView.addOverlay(overlay)
+        self.mapView.add(overlay)
     }
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKTileOverlay {
             let renderer = MKTileOverlayRenderer(overlay:overlay)
             renderer.alpha = 1
@@ -685,7 +685,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func startLocationUpdates() {
         let status = CLLocationManager.authorizationStatus()
-        if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
             if gpsDisplay == "Off" {
                 gpsDisplay = "On"
                 locationBtn.tintColor = UIColor(red: 0/255, green: 128/255, blue: 255/255, alpha: 1)
@@ -693,55 +693,55 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
-                locationManager.activityType = CLActivityType.Fitness
+                locationManager.activityType = CLActivityType.fitness
                 locationManager.distanceFilter = 10 // meters
                 
                 mapView.showsUserLocation = true
-                mapView.setUserTrackingMode(MKUserTrackingMode.Follow, animated: true)
-                UIApplication.sharedApplication().idleTimerDisabled = true
+                mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+                UIApplication.shared.isIdleTimerDisabled = true
                 locationManager.startUpdatingLocation()
                 locationManager.startUpdatingHeading()
             } else if gpsDisplay == "On" {
                 gpsDisplay = "Off"
-                locationBtn.tintColor = UIColor.whiteColor()
+                locationBtn.tintColor = UIColor.white
                 locateMeLabel.text = "Locate Me\nis off"
                 mapView.showsUserLocation = false
-                mapView.setUserTrackingMode(MKUserTrackingMode.None, animated: true)
-                UIApplication.sharedApplication().idleTimerDisabled = false
+                mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)
+                UIApplication.shared.isIdleTimerDisabled = false
                 stopLocationUpdates()
             }
             
-        } else if status == .Denied {
+        } else if status == .denied {
             openSettingGPS()
         }
     }
     func openSettingGPS() {
-        let alertController = UIAlertController (title: "Location Service is off", message: "Go to Settings?", preferredStyle: .Alert)
+        let alertController = UIAlertController (title: "Location Service is off", message: "Go to Settings?", preferredStyle: .alert)
         
-        let settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
-            let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
             if let url = settingsUrl {
-                UIApplication.sharedApplication().openURL(url)
+                UIApplication.shared.openURL(url)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(settingsAction)
         alertController.addAction(cancelAction)
         
-        presentViewController(alertController, animated: true, completion: nil);
+        present(alertController, animated: true, completion: nil);
     }
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-        case .Authorized, .AuthorizedWhenInUse:
+        case .authorizedAlways, .authorizedWhenInUse:
             manager.startUpdatingLocation()
             self.mapView.showsUserLocation = true
         default: break
         }
     }
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for newLocation in locations {
-            let eventDate: NSDate = newLocation.timestamp
-            let howRecent: NSTimeInterval = eventDate.timeIntervalSinceNow
+            let eventDate: Date = newLocation.timestamp
+            let howRecent: TimeInterval = eventDate.timeIntervalSinceNow
             if fabs(howRecent) < 10.0 && newLocation.horizontalAccuracy < 20 {
                 let span = mapView.region.span
                 let region = MKCoordinateRegion(center: newLocation.coordinate, span: span)
@@ -752,9 +752,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             stopLocationUpdates()
         }
     }
-    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         if gpsDisplay == "On" {
-            mapView.setUserTrackingMode(MKUserTrackingMode.FollowWithHeading, animated: true)
+            mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
         } else if gpsDisplay == "Off" {
             stopLocationUpdates()
         }
@@ -762,35 +762,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //# MARK: - Web and Map View
     func createWebAndMapView() {
         
-        mainMapView = UIView(frame: CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height))
+        mainMapView = UIView(frame: CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height))
         mainMapView.backgroundColor=UIColor(red: 32/255, green: 32/255, blue: 64/255, alpha: 1)
         mainView.addSubview(mainMapView)
-        mapView = MKMapView(frame: CGRectMake(0, 40, mainMapView.frame.width, mainMapView.frame.height-40))
-        mapView.mapType = MKMapType.Standard
+        mapView = MKMapView(frame: CGRect(x: 0, y: 40, width: mainMapView.frame.width, height: mainMapView.frame.height-40))
+        mapView.mapType = MKMapType.standard
         mapView.delegate = self
-        mapView.zoomEnabled = true
-        mapView.scrollEnabled = true
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
         mapView.showsUserLocation = false
         mainMapView.addSubview(mapView)
         
         addTileOverlay()
         
-        locationBtn = UIButton(type: UIButtonType.System) as UIButton
-        locationBtn.frame = CGRectMake(12, 0, 32, 32)
-        locationBtn.setImage(UIImage(named: "Location_Tab.png"), forState:.Normal)
-        locationBtn.addTarget(self, action: #selector(ViewController.startLocationUpdates), forControlEvents:.TouchUpInside)
-        locationBtn.tintColor = UIColor.whiteColor()
+        locationBtn = UIButton(type: UIButtonType.system) as UIButton
+        locationBtn.frame = CGRect(x: 12, y: 0, width: 32, height: 32)
+        locationBtn.setImage(UIImage(named: "Location_Tab.png"), for:UIControlState())
+        locationBtn.addTarget(self, action: #selector(ViewController.startLocationUpdates), for:.touchUpInside)
+        locationBtn.tintColor = UIColor.white
         mainMapView.addSubview(locationBtn)
         
-        locateMeLabel = UILabel(frame: CGRectMake(50, 0, 80, 40))
+        locateMeLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 80, height: 40))
         locateMeLabel.text = "Locate Me\nis off"
-        locateMeLabel.textColor=UIColor.whiteColor()
+        locateMeLabel.textColor=UIColor.white
         locateMeLabel.font = UIFont(name: "TrebuchetMS", size: 14)
-        locateMeLabel.textAlignment = NSTextAlignment.Left
+        locateMeLabel.textAlignment = NSTextAlignment.left
         locateMeLabel.numberOfLines = 2
         mainMapView.addSubview(locateMeLabel)
         
-        webView = UIWebView(frame: CGRectMake(mainView.frame.width, 0, mainView.frame.width, mainView.frame.height))
+        webView = UIWebView(frame: CGRect(x: mainView.frame.width, y: 0, width: mainView.frame.width, height: mainView.frame.height))
         webView.scalesPageToFit = true
         webView.delegate = self;
         mainView.addSubview(webView)
@@ -803,27 +803,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         //Create the root layer
-        animateView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+        animateView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
         rootLayer = animateView.layer
         
         //Set the root layer's attributes
-        rootLayer.bounds = CGRectMake(0, -(animateView.frame.height/2), animateView.frame.width, animateView.frame.height)
+        rootLayer.bounds = CGRect(x: 0, y: -(animateView.frame.height/2), width: animateView.frame.width, height: animateView.frame.height)
         
-        let colorSpace1: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
+        let colorSpace1: CGColorSpace = CGColorSpaceCreateDeviceRGB()
         let black1: [CGFloat] = [0.0, 0.0, 0.0, 1.0]
-        let color1: CGColorRef = CGColorCreate(colorSpace1, black1)!
+        let color1: CGColor = CGColor(colorSpace: colorSpace1, components: black1)!
         rootLayer.backgroundColor = color1
         //CGColorRelease(color)
         
         //Load the spark image for the particle
         //let fileName: char = [[[NSBundle mainBundle] pathForResource:"tspark" ofType:"png"] UTF8String]
-        let fileName: String = NSBundle.mainBundle().pathForResource("tspark", ofType: "png")!
-        let dataProvider: CGDataProviderRef = CGDataProviderCreateWithFilename(fileName)!
-        let img = CGImageCreateWithPNGDataProvider(dataProvider, nil, false, CGColorRenderingIntent.RenderingIntentDefault)
+        let fileName: String = Bundle.main.path(forResource: "tspark", ofType: "png")!
+        let dataProvider: CGDataProvider = CGDataProvider(filename: fileName)!
+        let img = CGImage(pngDataProviderSource: dataProvider, decode: nil, shouldInterpolate: false, intent: CGColorRenderingIntent.defaultIntent)
         
         
         mortor = CAEmitterLayer()
-        mortor.emitterPosition = CGPointMake(160, -160)
+        mortor.emitterPosition = CGPoint(x: 160, y: -160)
         mortor.renderMode = kCAEmitterLayerAdditive
         
         //Invisible particle representing the rocket before the explosion
@@ -837,9 +837,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         rocket.yAcceleration = -250
         rocket.emissionRange = CGFloat(M_PI/4)
         
-        let colorSpace2: CGColorSpaceRef = CGColorSpaceCreateDeviceRGB()!
+        let colorSpace2: CGColorSpace = CGColorSpaceCreateDeviceRGB()
         let black2: [CGFloat] = [0.0, 0.0, 0.0, 1.0]
-        let color2: CGColorRef = CGColorCreate(colorSpace2, black2)!
+        let color2: CGColor = CGColor(colorSpace: colorSpace2, components: black2)!
         rootLayer.backgroundColor = color2
         //CGColorRelease(color)
         
@@ -915,8 +915,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         rootLayer.addSublayer(mortor)
         
     }
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

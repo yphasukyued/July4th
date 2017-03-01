@@ -2,11 +2,11 @@ import Foundation
 import MapKit
 
 protocol HomeModelProtocal: class {
-    func itemsDownloaded(items: NSArray)
+    func itemsDownloaded(_ items: NSArray)
 }
 
 
-class HomeModel: NSObject, NSURLSessionDataDelegate {
+class HomeModel: NSObject, URLSessionDataDelegate {
     
     //properties
     
@@ -14,32 +14,32 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
     var data : NSMutableData = NSMutableData()
     var urlPath: String = ""
     
-    func downloadItems(type: String) {
+    func downloadItems(_ type: String) {
         
         if type == "Points" {
             urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetPointsList.aspx"
         } else {
             urlPath = "https://gis.howardcountymd.gov/iOS/July4th/GetList.aspx"
         }
-        let url: NSURL = NSURL(string: urlPath)!
-        var session: NSURLSession!
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let url: URL = URL(string: urlPath)!
+        var session: Foundation.URLSession!
+        let configuration = URLSessionConfiguration.default
         
         
-        session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         
-        let task = session.dataTaskWithURL(url)
+        let task = session.dataTask(with: url)
         
         task.resume()
         
     }
     
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        self.data.appendData(data);
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        self.data.append(data);
         
     }
     
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if error != nil {
             print("Failed to download data")
         }else {
@@ -53,7 +53,7 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
         var jsonResult: NSMutableArray = NSMutableArray()
         
         do{
-            jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options:NSJSONReadingOptions.AllowFragments) as! NSMutableArray
+            jsonResult = try JSONSerialization.jsonObject(with: self.data as Data, options:JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableArray
             
         } catch let error as NSError {
             print(error)
@@ -62,7 +62,7 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
         
         let locations: NSMutableArray = NSMutableArray()
         
-        for item in jsonResult {
+        for item:AnyObject in jsonResult as [AnyObject] {
             
             let location = LocationModel()
             let category = (item["Category"] as? String)!
@@ -75,11 +75,11 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             location.latitude = latitude as Double
             location.longitude = longitude as Double
             
-            locations.addObject(location)
+            locations.add(location)
             
         }
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             
             self.delegate.itemsDownloaded(locations)
             

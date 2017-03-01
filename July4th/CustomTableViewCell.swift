@@ -18,17 +18,17 @@ class MyTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         myLabel1 = UILabel()
-        myLabel1.textColor = UIColor.whiteColor()
+        myLabel1.textColor = UIColor.white
         myLabel1.font = UIFont(name: "TrebuchetMS", size: 16)
         contentView.addSubview(myLabel1)
         
         myLabel2 = UILabel()
-        myLabel2.textColor = UIColor.whiteColor()
+        myLabel2.textColor = UIColor.white
         myLabel2.font = UIFont(name: "TrebuchetMS", size: 12)
         contentView.addSubview(myLabel2)
         
         myDetail = UILabel()
-        myDetail.textColor = UIColor.whiteColor()
+        myDetail.textColor = UIColor.white
         myDetail.font = UIFont(name: "TrebuchetMS", size: 12)
         contentView.addSubview(myDetail)
         
@@ -50,15 +50,15 @@ class MyTableViewCell: UITableViewCell {
     class var defaultHeight: CGFloat  { get { return 50  } }
     
     func checkHeight() {
-        myDetail.hidden = (frame.size.height < MyTableViewCell.expandedHeight)
-        mapButton.hidden = (frame.size.height < MyTableViewCell.expandedHeight)
-        webButton.hidden = (frame.size.height < MyTableViewCell.expandedHeight)
-        phoneButton.hidden = (frame.size.height < MyTableViewCell.expandedHeight)
+        myDetail.isHidden = (frame.size.height < MyTableViewCell.expandedHeight)
+        mapButton.isHidden = (frame.size.height < MyTableViewCell.expandedHeight)
+        webButton.isHidden = (frame.size.height < MyTableViewCell.expandedHeight)
+        phoneButton.isHidden = (frame.size.height < MyTableViewCell.expandedHeight)
     }
     
     func watchFrameChanges() {
         if !isObserving {
-            addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Initial], context: nil)
+            addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.new, NSKeyValueObservingOptions.initial], context: nil)
             isObserving = true;
         }
     }
@@ -70,7 +70,7 @@ class MyTableViewCell: UITableViewCell {
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "frame" {
             checkHeight()
         }
